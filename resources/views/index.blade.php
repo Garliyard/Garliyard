@@ -32,6 +32,12 @@
                                         <a href="https://garlicoin.io">Garlicoin</a> created in <a href="https://laravel.com">Laravel</a>
                                         with a few spreads of butter.
                                     </p>
+                                    <hr>
+                                    <div class="alert alert-warning">
+                                        Garliyard is entirely experimental, and bugs may exist in production.
+                                        <br>
+                                        Please use this wallet at your own risk.
+                                    </div>
                                 </div>
                             </div>
                         </div>

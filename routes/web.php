@@ -12,3 +12,5 @@
 */
 
 Route::get('/', 'Controller@index');
+Route::get('/login', 'Auth\LoginController@loginView');
+Route::post('/login', 'Auth\LoginController@login');
