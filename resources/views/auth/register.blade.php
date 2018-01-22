@@ -22,7 +22,7 @@
         <br>
         <h3>{{ config("app.name", 'Garliyard') }} Registration</h3>
         <p>Just a few swipes of butter away.</p>
-        <form class="m-t" role="form" action="/register">
+        <form class="m-t" role="form" action="/register" method="post">
             {{ csrf_field() }}
             <div class="form-group">
                 @if(isset($username))
