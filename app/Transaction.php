@@ -33,7 +33,7 @@ class Transaction extends Model
      *
      * @return mixed
      */
-    public function getCount()
+    public static function getCount()
     {
         return Cache::remember('total-transaction-count', 10, function () {
             return self::all()->count();

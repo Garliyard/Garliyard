@@ -529,14 +529,14 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
 .top-navigation .nav > li a:hover,
 .top-navigation .nav > li a:focus {
   background: #fff;
-  color: #1ab394;
+  color: #cc862c;
 }
 .top-navigation .navbar .nav > li.active {
   background: #fff;
   border: none;
 }
 .top-navigation .nav > li.active > a {
-  color: #1ab394;
+  color: #de972c;
 }
 .top-navigation .navbar-right {
   margin-right: 10px;
@@ -553,7 +553,7 @@ body.canvas-menu.mini-navbar nav.navbar-static-side {
   margin-top: 0;
 }
 .top-navigation .navbar-brand {
-  background: #1ab394;
+  background: #de972c;
   color: #fff;
   padding: 15px 25px;
 }

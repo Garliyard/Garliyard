@@ -2,11 +2,8 @@
 
 namespace App;
 
-use App\Http\Controllers\GarlicoinController;
-use Carbon\Carbon;
-use function foo\func;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Filesystem\Cache;
+use Illuminate\Support\Facades\Cache;
 
 class Address extends Model
 {
@@ -26,7 +23,7 @@ class Address extends Model
      * @param $address
      * @return mixed
      */
-    public function getOwnerID($address): int
+    public static function getOwnerID($address): int
     {
         return self::where('address', $address)->firstOrFail()->user_id;
     }
@@ -36,9 +33,9 @@ class Address extends Model
      *
      * @return mixed
      */
-    public function getCount(): int
+    public static function getCount(): int
     {
-        return Cache::remember('total-address-count', 10, function (){
+        return Cache::remember('total-address-count', 10, function () {
             return self::all()->count();
         });
     }

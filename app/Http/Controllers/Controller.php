@@ -11,9 +11,9 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-    public function home()
+    public function index()
     {
-
+        return view("index");
     }
 
     public function isAppEnvironmentLocal()

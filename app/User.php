@@ -33,7 +33,7 @@ class User extends Authenticatable
      *
      * @return mixed
      */
-    public function getCount()
+    public static function getCount()
     {
         return Cache::remember('total-user-count', 10, function () {
             return self::all()->count();
