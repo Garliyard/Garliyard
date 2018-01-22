@@ -136,6 +136,20 @@ return [
     |
     */
 
+    /*
+    |--------------------------------------------------------------------------
+    | Garlicoin Daemon Configuration
+    |--------------------------------------------------------------------------
+    |
+    | How should the application connect to the daemon?
+    |
+    */
+
+    'rpc_username' => env('GARLICOIND_RPC_USERNAME', 'garlicoind'),
+    'rpc_password' => env('GARLICOIND_RPC_PASSWORD', 'garlicoind'),
+    'rpc_host' => env('GARLICOIND_RPC_HOST', '127.0.0.1'),
+    'rpc_port' => env('GARLICOIND_RPC_HOST', 42070),
+
     'providers' => [
 
         /*
