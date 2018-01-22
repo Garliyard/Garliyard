@@ -26,7 +26,8 @@ class DashboardController extends Controller
     {
         return view("dashboard/home")
             ->with('user', Auth::user())
-            ->with('garlicoin', $this->garlicoind)
+            ->with('address', $this->garlicoind->getLastAddress())
+            ->with('balance', $this->garlicoind->getBalance())
             ->with('transactions', Transaction::getRecentTransactionsFromUserID(Auth::user()->id));
     }
 
