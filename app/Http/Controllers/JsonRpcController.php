@@ -6,24 +6,15 @@ use Illuminate\Http\Request;
 
 class JsonRpcController extends Controller
 {
-    private $base_url;
-    private $curl_instance;
+    public $base_url;
+    public $curl_instance;
     private $pending_data;
     private $data_template = [
+        "jsonrpc" => "1.0",
         "method" => "",
-        "params" => []
+        "params" => [],
+        "id" => 1
     ];
-
-    public function __construct()
-    {
-        $this->base_url = sprintf(
-            "http://%s:%s@%s:%s/",
-            config("app.rpc_username", "garlicoind"),
-            config("app.rpc_password", "garlicoind"),
-            config("app.rpc_host", "127.0.0.1"),
-            config("app.rpc_port", 42070)
-        );
-    }
 
     /**
      * Build a new request.
@@ -72,9 +63,9 @@ class JsonRpcController extends Controller
     public function newCurlInstance()
     {
         $this->curl_instance = curl_init();
-        curl_setopt($this->curl_instance, CURLOPT_POST, count($this->pending_data));
-        curl_setopt($this->curl_instance, CURLOPT_POSTFIELDS, json_encode($this->pending_data));
+        curl_setopt($this->curl_instance, CURLOPT_POST, 1);
         curl_setopt($this->curl_instance, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($this->curl_instance, CURLOPT_POSTFIELDS, json_encode($this->pending_data));
         return $this->curl_instance;
     }
 

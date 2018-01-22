@@ -148,7 +148,7 @@ return [
     'rpc_username' => env('GARLICOIND_RPC_USERNAME', 'garlicoind'),
     'rpc_password' => env('GARLICOIND_RPC_PASSWORD', 'garlicoind'),
     'rpc_host' => env('GARLICOIND_RPC_HOST', '127.0.0.1'),
-    'rpc_port' => env('GARLICOIND_RPC_HOST', 42070),
+    'rpc_port' => intval(env('GARLICOIND_RPC_PORT', 42070)),
 
     'providers' => [
 

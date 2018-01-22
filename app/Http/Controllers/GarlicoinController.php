@@ -15,6 +15,14 @@ class GarlicoinController extends JsonRpcController
     public function __construct()
     {
         $this->middleware("auth");
+
+        $this->base_url = sprintf(
+            "http://%s:%s@%s:%s/",
+            config("app.rpc_username", "garlicoind"),
+            config("app.rpc_password", "garlicoind"),
+            config("app.rpc_host", "127.0.0.1"),
+            config("app.rpc_port", 42070)
+        );
     }
 
     /**
@@ -38,10 +46,10 @@ class GarlicoinController extends JsonRpcController
             $this->newCurlInstance();
             $data = $this->post();
 
-            if ($data["status"] == "success") {
+            if ($data["error"] == null) {
                 return Address::create([
                     "user_id" => Auth::user()->id,
-                    "address" => $data["result"]
+                    "address" => $data["result"]["address"]
                 ]);
             } else {
                 return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
@@ -95,7 +103,7 @@ class GarlicoinController extends JsonRpcController
             $this->newCurlInstance();
             $data = $this->post();
 
-            if ($data["status"] == "success") {
+            if ($data["error"] == null) {
                 return Transaction::create([
                     "user_id" => Auth::user()->id,
                     "transaction_id" => $data["transaction_id"],
@@ -141,7 +149,7 @@ class GarlicoinController extends JsonRpcController
             $this->newCurlInstance();
             $data = $this->post();
 
-            if ($data["status"] == "success") {
+            if ($data["error"] == null) {
                 return Cache::tags('account-balance')->remember(Auth::user()->username, 1, function () use ($data) {
                     return $data["result"];
                 });
@@ -157,7 +165,7 @@ class GarlicoinController extends JsonRpcController
         $this->newCurlInstance();
         $data = $this->post();
 
-        if ($data["status"] == "success") {
+        if ($data["error"] == null) {
             return Cache::tags('account-balance')->remember(Auth::user()->username, 1, function () use ($data) {
                 return $data["result"];
             });
