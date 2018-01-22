@@ -13,6 +13,10 @@
 
 Route::get('/', 'Controller@index');
 Route::get('/login', 'Auth\LoginController@loginView');
+Route::get('/logout', 'Auth\LoginController@logout');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register', 'Auth\RegisterController@registrationView');
 Route::post('/register', 'Auth\RegisterController@register');
+
+// Dashboard
+Route::get('/home', 'DashboardController@home');
