@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>INSPINIA | Login 2</title>
+    <title>{{ config('app.name', 'Garliyard') }} | Login</title>
 
     <link href="/css/app.css" rel="stylesheet">
 
