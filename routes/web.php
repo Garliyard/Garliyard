@@ -14,3 +14,5 @@
 Route::get('/', 'Controller@index');
 Route::get('/login', 'Auth\LoginController@loginView');
 Route::post('/login', 'Auth\LoginController@login');
+Route::get('/register', 'Auth\RegisterController@registrationView');
+Route::post('/register', 'Auth\RegisterController@register');

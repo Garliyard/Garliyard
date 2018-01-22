@@ -62,6 +62,7 @@ class LoginController extends Controller
     {
         if (!$request->has("username")) return "Please provide a valid username";
         if (!$request->has("password")) return "Please provide a valid password";
+        return false;
     }
 
     public function logout()

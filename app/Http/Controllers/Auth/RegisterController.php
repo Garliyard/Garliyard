@@ -56,10 +56,10 @@ class RegisterController extends Controller
         if (!$request->has("username")) return "Please provide a valid username";
         if (!$request->has("password")) return "Please provide a valid password";
         if (User::where('', $request->input("username"))->first()) return "Username already exists";
-
+        return false;
     }
 
-    public function registerView()
+    public function registrationView()
     {
         return view("auth/register");
     }
