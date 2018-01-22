@@ -7,7 +7,16 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-
+            @if(\Illuminate\Support\Facades\Auth::check())
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Navigation <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="/home">Dashboard</a></li>
+                        <li><a href="/addresses">Addresses</a></li>
+                        <li><a href="/transactions">Transactions</a></li>
+                    </ul>
+                </li>
+            @endif
         </ul>
         <ul class="nav navbar-top-links navbar-right">
             @if(\Illuminate\Support\Facades\Auth::check())

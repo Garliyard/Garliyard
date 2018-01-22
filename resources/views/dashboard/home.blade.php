@@ -40,14 +40,19 @@
                             <div class="panel-body">
                                 <h1>
                                     {{ $address->address }}
-                                    <a href="#" style="color: #000;" data-toggle="modal" data-target="#qr-code">
-                                        <span class="fa fa-qrcode pull-right"></span>
-                                    </a>
+                                    <span class="pull-right">
+                                        <a href="#" style="color: #000;" data-toggle="modal" data-target="#qr-code">
+                                            <span class="fa fa-qrcode"></span>
+                                        </a>
+                                        <a href="#" style="color: #000;" data-toggle="modal" data-target="#html-code">
+                                            <span class="fa fa-code"></span>
+                                        </a>
+                                    </span>
                                 </h1>
                                 <small>
                                     {{ strtoupper("This address was created " . \Carbon\Carbon::parse($address->created_at)->diffForHumans()) }}
                                     <br>
-                                    <a href="/new-address">CREATE NEW ADDRESS</a> | <a href="/new-address">VIEW ALL ADDRESSES</a>
+                                    <a href="/new-address">CREATE NEW ADDRESS</a> | <a href="/addresses">VIEW ALL ADDRESSES</a>
                                 </small>
                             </div>
                         </div>
@@ -76,6 +81,7 @@
 </div>
 
 @include("layouts.other.qr_code_address_modal")
+@include("layouts.other.html_code_address_modal")
 
 <!-- Mainly scripts -->
 <script src="/js/app.js"></script>
