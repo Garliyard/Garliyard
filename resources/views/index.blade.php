@@ -91,7 +91,7 @@
                                             <h1>{{ number_format(\App\Http\Controllers\Controller::getServerBalanceGetter(), 8) }}</h1>
                                         </div>
                                         <div class="row">
-                                            Current Holdings
+                                            Current GRLC Holdings
                                         </div>
                                     </div>
                                 </div>
