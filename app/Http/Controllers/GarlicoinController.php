@@ -197,17 +197,7 @@ class GarlicoinController extends JsonRpcController
 
     public function getAddressBalance($address)
     {
-        $this->newRequest();
-        $this->setMethod("getbalance");
-        $this->setParameters([Auth::user()->username, 6]); // [username, minconf]
-        $this->newCurlInstance();
-        $data = $this->post();
 
-        if ($data["error"] == null) {
-            return Cache::tags('account-balance')->remember(Auth::user()->username, 1, function () use ($data) {
-                return $data["result"];
-            });
-        } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
     }
 
     public function exportPrivateKey($address)
