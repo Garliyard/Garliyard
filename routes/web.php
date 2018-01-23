@@ -22,7 +22,7 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/home', 'DashboardController@home');
 Route::get('/new-address', 'DashboardController@newAddress');
 Route::get('/addresses', 'DashboardController@addresses');
-Route::get('/addresses', 'DashboardController@transactions');
+Route::get('/transactions', 'DashboardController@transactions');
 Route::get('/pay', 'DashboardController@payView');
 Route::post('/pay', 'DashboardController@pay');
 Route::get('/transaction/{txid}', 'DashboardController@transactionView');
