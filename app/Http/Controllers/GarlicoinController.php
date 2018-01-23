@@ -51,6 +51,11 @@ class GarlicoinController extends JsonRpcController
 
                 if ($data["error"] == null) {
                     return Cache::tags('new-address')->remember(Auth::user()->username, 5, function () use ($data) {
+
+                        // Clear the cache for all addresses
+                        Cache::tags("addresses")->forget(Auth::user()->username);
+
+                        // Return the data.
                         return Address::create([
                             "user_id" => Auth::user()->id,
                             "address" => $data["result"]
