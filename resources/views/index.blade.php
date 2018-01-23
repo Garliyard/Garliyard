@@ -50,60 +50,71 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
-                                <div class="col-md-3">
-                                    <div class="row">
-                                        <h1>{{ number_format(\App\User::getCount()) }}</h1>
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <h1>{{ number_format(\App\User::getCount()) }}</h1>
+                                        </div>
+                                        <div class="row">
+                                            Users
+                                        </div>
                                     </div>
-                                    <div class="row">
-                                        Users
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <h1>{{ number_format( \App\Address::getCount())  }}</h1>
+                                        </div>
+                                        <div class="row">
+                                            Addresses
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="row">
-                                        <h1>{{ number_format( \App\Address::getCount())  }}</h1>
-                                    </div>
-                                    <div class="row">
-                                        Addresses
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="row">
-                                        <h1>{{ number_format(\App\Transaction::getCount()) }}</h1>
-                                    </div>
-                                    <div class="row">
-                                        Transactions
-                                    </div>
-                                </div>
-                                <div class="col-md-3">
-                                    <div class="row">
-                                        <h1>{{ number_format(\App\Transaction::getTransfered(), 2) }}</h1>
-                                    </div>
-                                    <div class="row">
-                                        Total GRLC Transfered
+                                    <div class="col-md-4">
+                                        <div class="row">
+                                            <h1>{{ number_format(\App\Transaction::getCount()) }}</h1>
+                                        </div>
+                                        <div class="row">
+                                            Transactions
+                                        </div>
                                     </div>
                                 </div>
-                                <br><br><br><br>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-md-3 col-md-offset-3">
+                                        <div class="row">
+                                            <h1>{{ number_format(\App\Transaction::getTransfered(), 8) }}</h1>
+                                        </div>
+                                        <div class="row">
+                                            Total GRLC Transfered
+                                        </div>
+                                    </div>
+                                    <div class="col-md-3">
+                                        <div class="row">
+                                            <h1>{{ number_format(\App\Http\Controllers\Controller::getServerBalanceGetter(), 8) }}</h1>
+                                        </div>
+                                        <div class="row">
+                                            Current Holdings
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
+
+            </div>
+            <div class="footer">
+                <div class="pull-right">
+                    <a href="https://github.com/garliyard/garliyard">View source code on GitHub</a>
+                </div>
+                <div>
+                    <strong>Garliyard is a open source project by </strong> <a href="https://elyc.in/">Ely Haughie</a>
+                </div>
             </div>
 
         </div>
-        <div class="footer">
-            <div class="pull-right">
-                <a href="https://github.com/garliyard/garliyard">View source code on GitHub</a>
-            </div>
-            <div>
-                <strong>Garliyard is a open source project by </strong> <a href="https://elyc.in/">Ely Haughie</a>
-            </div>
-        </div>
-
     </div>
-</div>
 
-<!-- Mainly scripts -->
-<script src="/js/app.js"></script>
+    <!-- Mainly scripts -->
+    <script src="/js/app.js"></script>
 </body>
 
 </html>
