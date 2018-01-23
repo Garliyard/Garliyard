@@ -34,7 +34,7 @@
                     <div class="col-md-4 col-md-offset-4">
                         <form action="/pay" method="post">
                             {{ csrf_field() }}
-                            <div class="panel panel-success">
+                            <div class="panel panel-info">
                                 <div class="panel-heading">
                                     TRANSACTION SENT
                                 </div>
@@ -73,6 +73,9 @@
                                             {{ \Carbon\Carbon::parse($transaction->created_at)->diffForHumans() }}
                                         </p>
                                     </div>
+                                </div>
+                                <div class="panel-footer">
+                                    <a class="btn btn-success" href="https://explorer.grlc-bakery.fun/tx/{{ $transaction->transaction_id }}" target="_blank">VIEW ON EXPLORER</a>
                                 </div>
                             </div>
                         </form>
