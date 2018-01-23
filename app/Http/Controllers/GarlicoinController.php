@@ -7,7 +7,6 @@ use App\Transaction;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Crypt;
 
 class GarlicoinController extends JsonRpcController
 {
@@ -197,7 +196,15 @@ class GarlicoinController extends JsonRpcController
 
     public function getAddressBalance($address)
     {
+        $this->newRequest();
+        $this->setMethod("getreceivedbyaddress");
+        $this->setParameters([$address, self::$minconf]); // [address]
+        $this->newCurlInstance();
+        $data = $this->post();
 
+        if ($data["error"] == null) {
+            return $data["result"];
+        } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
     }
 
     public function exportPrivateKey($address)

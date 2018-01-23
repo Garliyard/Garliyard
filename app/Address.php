@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Controllers\GarlicoinController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -45,6 +46,14 @@ class Address extends Model
     {
         return Cache::tags('address-count')->remember(Auth::user()->username, 5, function () {
             return self::where('user_id', Auth::user()->id)->get()->count();
+        });
+    }
+
+    public static function getReceived($address)
+    {
+        $gcd = new GarlicoinController();
+        return Cache::tags('address-received')->remember($address, 1, function () use ($gcd, $address) {
+            return $gcd->getAddressBalance($address);
         });
     }
 
