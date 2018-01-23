@@ -87,7 +87,7 @@ class DashboardController extends Controller
 
     public function transactions()
     {
-        return view("dashboard/addresses")
+        return view("dashboard/transactions")
             ->with('user', Auth::user())
             ->with('transactions', Transaction::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get());
     }
