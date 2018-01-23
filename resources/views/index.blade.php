@@ -97,6 +97,10 @@
                                         </div>
                                     </div>
                                 </div>
+                                <hr>
+                                <small>
+                                    <p>The values above are cached and updated once every ten minutes.</p>
+                                </small>
                             </div>
                         </div>
                     </div>
