@@ -100,10 +100,12 @@ class GarlicoinController extends JsonRpcController
      *
      * @param string $address
      * @param float $amount
+     * @param float $fee
      * @return Transaction|bool
      */
-    public function pay(string $address, float $amount)
+    public function pay(string $address, float $amount, $fee = 0.0)
     {
+        $data = [];
         if ($this->hasEnough($amount)) {
             $this->newRequest();
             $this->setMethod("sendfrom");
@@ -114,14 +116,28 @@ class GarlicoinController extends JsonRpcController
             if ($data["error"] == null) {
                 return Transaction::create([
                     "user_id" => Auth::user()->id,
-                    "transaction_id" => $data["transaction_id"],
+                    "transaction_id" => $data["txid"],
                     "to_address" => $address,
                     "amount" => $amount
                 ]);
+            } else if (strpos($data["error"], "fee") !== false) {
+                if ($fee != 0.0) {
+                    // A fee has already been added, meaning the function is recursive called.
+                    $string_split_array = explode(":", $data["error"]["message"]);
+                    $fee_value = floatval($string_split_array[count($string_split_array) - 1]);
+                    $add_to_fee = $fee_value - $fee;
+                    return $this->pay($address, $amount - $add_to_fee, $fee_value + $add_to_fee);
+                } else {
+                    $string_split_array = explode(":", $data["error"]["message"]);
+                    $fee_value = floatval($string_split_array[count($string_split_array) - 1]);
+                    return $this->pay($address, $amount - $fee_value, $fee_value);
+                }
+
+
             } else {
                 return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
             }
-        } else return false;
+        } else return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
     }
 
     /**
@@ -153,7 +169,7 @@ class GarlicoinController extends JsonRpcController
         } else {
             $this->newRequest();
             $this->setMethod("getbalance");
-            $this->setParameters([Auth::user()->username, 6]); // [username, minconf]
+            $this->setParameters([Auth::user()->username, 1]); // [username, minconf]
             $this->newCurlInstance();
             $data = $this->post();
 
