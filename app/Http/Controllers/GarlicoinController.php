@@ -169,7 +169,7 @@ class GarlicoinController extends JsonRpcController
     {
         $this->newRequest();
         $this->setMethod("getbalance");
-        $this->setParameters([Auth::user()->username, 1]); // [username, minconf]
+        $this->setParameters([Auth::user()->username, 6]); // [username, minconf]
         $this->newCurlInstance();
         $data = $this->post();
         if ($data["error"] == null) {
