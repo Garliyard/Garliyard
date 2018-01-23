@@ -36,7 +36,9 @@
                                     <div class="alert alert-warning">
                                         Garliyard is entirely experimental, and bugs may exist in production.
                                         <br>
-                                        Please use this wallet at your own risk.
+                                        Please use this wallet with caution.
+                                        <br><br>
+                                        If your funds do not appear on the website after being sent, please contact <b>Elycin#4913</b>
                                     </div>
                                 </div>
                             </div>

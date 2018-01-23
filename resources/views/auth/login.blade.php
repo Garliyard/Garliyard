@@ -20,11 +20,6 @@
             </p>
 
             <p>
-                By continuing to log in, you as the end user acknowledge that any form of accidental currency loss is at your own risk. Although it should not happen, your balances should be stored in the on
-                server garlicoin daemon if they do not appear here on this website.
-            </p>
-
-            <p>
                 If you need support, please contact <strong>{{ env('DISCORD_SUPPORT', 'Undefined#0000') }}</strong> on Discord.
             </p>
 
