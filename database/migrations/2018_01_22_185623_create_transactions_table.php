@@ -17,6 +17,8 @@ class CreateTransactionsTable extends Migration
             $table->increments('id');
             $table->unsignedInteger("user_id");
             $table->string("transaction_id")->unique();
+            $table->string("to_address");
+            $table->float("amount");
             $table->timestamps();
         });
     }
