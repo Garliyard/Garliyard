@@ -49,7 +49,7 @@ class DashboardController extends Controller
         if ($balance > $parsed_amount) {
             // The user has enough to make the transaction
 
-            return redirect(sprintf("/transaction/%s", $this->garlicoind->pay($to_address, $parsed_amount)->id));
+            return redirect(sprintf("/transaction/%s", $this->garlicoind->pay($to_address, $parsed_amount)->transaction_id));
         } else {
             // The user does not have enough, tell them.
 
