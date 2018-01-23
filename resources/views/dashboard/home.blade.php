@@ -29,6 +29,9 @@
                             </div>
                             <div class="panel-body">
                                 <h1>{{ number_format($balance, 8) }} GRLC</h1>
+                                <p>
+                                    BALANCE AFTER {{ \App\Http\Controllers\GarlicoinController::$minconf }} CONFIRMATIONS
+                                </p>
                             </div>
                             <div class="panel-footer">
                                 <a href="/pay" class="btn btn-warning">SEND GRLC</a>

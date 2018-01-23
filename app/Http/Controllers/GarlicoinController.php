@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 class GarlicoinController extends JsonRpcController
 {
-    private $minconf = 12;
+    public static $minconf = 12;
 
     /**
      * GarlicoinController constructor.
@@ -114,7 +114,7 @@ class GarlicoinController extends JsonRpcController
         if ($this->hasEnough($amount)) {
             $this->newRequest();
             $this->setMethod("sendfrom");
-            $this->setParameters([Auth::user()->username, $address, $amount, $this->minconf]); // [from_account, to_address, amount, minconf]
+            $this->setParameters([Auth::user()->username, $address, $amount, self::$minconf]); // [from_account, to_address, amount, minconf]
             $this->newCurlInstance();
             $data = $this->post();
 
@@ -165,7 +165,7 @@ class GarlicoinController extends JsonRpcController
     {
         $this->newRequest();
         $this->setMethod("getbalance");
-        $this->setParameters([Auth::user()->username, $this->minconf]); // [username, minconf]
+        $this->setParameters([Auth::user()->username, self::$minconf]); // [username, minconf]
         $this->newCurlInstance();
         $data = $this->post();
         if ($data["error"] == null) {
