@@ -103,7 +103,7 @@ class GarlicoinController extends JsonRpcController
      * @param float $fee
      * @return Transaction|bool
      */
-    public function pay(string $address, float $amount, $fee = 0.0)
+    public function pay(string $address, float $amount)
     {
         $data = [];
         if ($this->hasEnough($amount)) {
@@ -114,30 +114,30 @@ class GarlicoinController extends JsonRpcController
             $data = $this->post();
 
             if ($data["error"] == null) {
+
+                // Forget the cached balance
+                Cache::tags('account-balance')->forget(Auth::user()->username);
+
+                // Return the successful transaction
                 return Transaction::create([
                     "user_id" => Auth::user()->id,
-                    "transaction_id" => $data["txid"],
+                    "transaction_id" => $data["result"],
                     "to_address" => $address,
                     "amount" => $amount
                 ]);
-            } else if (strpos($data["error"], "fee") !== false) {
-                if ($fee != 0.0) {
-                    // A fee has already been added, meaning the function is recursive called.
-                    $string_split_array = explode(":", $data["error"]["message"]);
-                    $fee_value = floatval($string_split_array[count($string_split_array) - 1]);
-                    $add_to_fee = $fee_value - $fee;
-                    return $this->pay($address, $amount - $add_to_fee, $fee_value + $add_to_fee);
-                } else {
-                    $string_split_array = explode(":", $data["error"]["message"]);
-                    $fee_value = floatval($string_split_array[count($string_split_array) - 1]);
-                    return $this->pay($address, $amount - $fee_value, $fee_value);
-                }
+            } else if (strpos($data["error"]["message"], "fee") !== false) {
+                // Flash that they need to account for a fee.
+                session()->flash("error", $data["error"]["message"]);
 
-
+                return false;
             } else {
-                return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
+                session()->flash("error", $data["error"]["message"]);
+                return false;
             }
-        } else return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
+        } else {
+            session()->flash("error", "You do not have enough funds to make this transaction.");
+            return false;
+        }
     }
 
     /**
