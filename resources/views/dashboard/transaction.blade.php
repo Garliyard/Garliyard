@@ -63,7 +63,7 @@
                                         <p>
                                             <strong>Amount sent</strong>:
                                             <br>
-                                            {{ $transaction->amount }}
+                                            {{  number_format($transaction->amount, 8) }}
                                         </p>
                                         <p>
                                             <strong>Transaction creation date</strong>:
