@@ -102,7 +102,7 @@ class DashboardController extends Controller
                     $model->delete();
 
                     // Clear the address cache for the user
-                    Cache::tags('addresses')->forget(Auth::user() - username);
+                    Cache::tags('addresses')->forget(Auth::user()->username);
 
                     // Return a success
                     return view("dashboard/export_private_key")
