@@ -46,7 +46,7 @@
         </div>
     </div>
 </div>
-
+@include("layouts.other.address_export_modal")
 <!-- Mainly scripts -->
 <script src="/js/app.js"></script>
 </body>

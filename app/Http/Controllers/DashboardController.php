@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Transaction;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -85,4 +85,37 @@ class DashboardController extends Controller
                 ->with("amount", $request->input("amount"));
         }
     }
+
+    public function exportPrivateKeyView($address)
+    {
+        if ($model = Address::where('address', $address)->firstOrFail()) {
+            if ($model->user_id == Auth::user()->id) {
+                // Get the private key
+                $private_key = $this->garlicoind->exportPrivateKey($address);
+
+                // Nullify the owner.
+                $this->garlicoind->nullifyAddressOwner($address);
+
+                try {
+                    // Delete the data from the database.
+                    $model->delete();
+
+                    // Return a success
+                    return view("dashboard/export_private_key")
+                        ->with("private_key", $private_key);
+                } catch (\Exception $exception) {
+                    // A problem occurred while deleting, restore the address owner.
+                    $this->garlicoind->setAccount(Auth::user()->username, $address);
+
+                    // Return error response.
+                    return abort(500);
+                }
+
+            } else {
+                return abort(404);
+            }
+        }
+    }
+
+
 }

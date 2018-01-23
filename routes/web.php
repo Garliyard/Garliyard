@@ -25,7 +25,7 @@ Route::get('/addresses', 'DashboardController@addresses');
 Route::get('/pay', 'DashboardController@payView');
 Route::post('/pay', 'DashboardController@pay');
 Route::get('/transaction/{txid}', 'DashboardController@transactionView');
-
+Route::get('/export-private-key/{address}', 'DashboardController@exportPrivateKeyView');
 
 //QR Generator
 Route::get('/qr-code/{address}', 'Controller@qr');

@@ -68,13 +68,12 @@
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(1);
-module.exports = __webpack_require__(5);
+module.exports = __webpack_require__(6);
 
 
 /***/ }),
 /* 1 */
 /***/ (function(module, exports, __webpack_require__) {
-
 
 /**
  * First we will load all of this project's JavaScript dependencies which
@@ -84,13 +83,13 @@ module.exports = __webpack_require__(5);
 
 window.$ = window.jQuery = __webpack_require__(2);
 __webpack_require__(3);
-
 __webpack_require__(4);
+__webpack_require__(5);
 // Google Analytics
 window.ga = window.ga || function () {
   (ga.q = ga.q || []).push(arguments);
 };
-ga('create', 'UA-XXXXX-Y', 'auto');
+ga('create', 'UA-40636205-6', 'auto');
 ga('set', 'transport', 'beacon');
 ga('send', 'pageview');
 
@@ -12646,6 +12645,20 @@ if (typeof jQuery === 'undefined') {
 /* 4 */
 /***/ (function(module, exports) {
 
+var last_clicked_pubkey = "";
+$(".pubkey-export").on('click', function () {
+    last_clicked_pubkey = $(this).attr("key");
+    $("#address-export-modal").modal();
+});
+
+function exportAddress() {
+    window.location.href = window.location.hostname + "/export-private-key/" + last_clicked_pubkey;
+}
+
+/***/ }),
+/* 5 */
+/***/ (function(module, exports) {
+
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 (function () {
@@ -13579,7 +13592,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 })(window);
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

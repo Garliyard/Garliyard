@@ -209,7 +209,7 @@ class GarlicoinController extends JsonRpcController
     {
         $this->newRequest();
         $this->setMethod("exportprivkey");
-        $this->setParameters([$address]); // [username]
+        $this->setParameters([$address]); // [address]
         $this->newCurlInstance();
         $data = $this->post();
 
@@ -220,5 +220,23 @@ class GarlicoinController extends JsonRpcController
                 })
             );
         } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
+    }
+
+    public function setAccount($username, $address)
+    {
+        $this->newRequest();
+        $this->setMethod("exportprivkey");
+        $this->setParameters([$address, $username]); // [address, username]
+        $this->newCurlInstance();
+        $data = $this->post();
+        if ($data["error"] == null) {
+            return true;
+        } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
+    }
+
+    public function nullifyAddressOwner($address)
+    {
+        $rand = bin2hex(openssl_random_pseudo_bytes(8));
+        return $this->setAccount($rand, $address);
     }
 }
