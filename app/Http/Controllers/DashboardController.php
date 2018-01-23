@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Transaction;
-use Illuminate\Filesystem\Cache;
+use \Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -102,7 +102,7 @@ class DashboardController extends Controller
                     $model->delete();
 
                     // Clear the address cache for the user
-                    Cache::tags('addresses')->forget(Auth::user()-username);
+                    Cache::tags('addresses')->forget(Auth::user() - username);
 
                     // Return a success
                     return view("dashboard/export_private_key")
