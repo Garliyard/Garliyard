@@ -50,7 +50,7 @@
                     <div class="col-lg-12">
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="row">
                                         <h1>{{ number_format(\App\User::getCount()) }}</h1>
                                     </div>
@@ -58,7 +58,7 @@
                                         Users
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="row">
                                         <h1>{{ number_format( \App\Address::getCount())  }}</h1>
                                     </div>
@@ -66,12 +66,20 @@
                                         Addresses
                                     </div>
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-3">
                                     <div class="row">
                                         <h1>{{ number_format(\App\Transaction::getCount()) }}</h1>
                                     </div>
                                     <div class="row">
                                         Transactions
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <div class="row">
+                                        <h1>{{ number_format(\App\Transaction::getTransfered(), 2) }}</h1>
+                                    </div>
+                                    <div class="row">
+                                        Total GRLC Transfered
                                     </div>
                                 </div>
                                 <br><br><br><br>

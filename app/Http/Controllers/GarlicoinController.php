@@ -17,8 +17,6 @@ class GarlicoinController extends JsonRpcController
      */
     public function __construct()
     {
-        $this->middleware("auth");
-
         $this->base_url = sprintf(
             "http://%s:%s@%s:%s/",
             config("app.rpc_username", "garlicoind"),
@@ -168,6 +166,20 @@ class GarlicoinController extends JsonRpcController
         $this->newRequest();
         $this->setMethod("getbalance");
         $this->setParameters([Auth::user()->username, $this->minconf]); // [username, minconf]
+        $this->newCurlInstance();
+        $data = $this->post();
+        if ($data["error"] == null) {
+            return $data["result"];
+        } else {
+            abort(500);
+        }
+    }
+
+    public function getServerBalance()
+    {
+        $this->newRequest();
+        $this->setMethod("getbalance");
+        $this->setParameters(["", $this->minconf]); // [username, minconf]
         $this->newCurlInstance();
         $data = $this->post();
         if ($data["error"] == null) {

@@ -42,6 +42,13 @@ class Transaction extends Model
         });
     }
 
+    public static function getTransfered()
+    {
+        return Cache::remember('total-transaction-transfer-count', 10, function () {
+            return self::all()->sum("amount");
+        });
+    }
+
     public static function getRecentTransactionsFromUserID($user_id)
     {
         return Cache::tags('user-transactions')->remember(Auth::user()->username, 3, function () use ($user_id) {
