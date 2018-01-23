@@ -19,14 +19,15 @@ class Transaction extends Model
      *
      * This uses the redis cache instead of making a database call.
      *
-     * @param int $id
+     * @param string $txid
      * @return Transaction
      */
-    public static function getCachedByID(int $id): self
+    public static function getCachedByID(string $txid)
     {
-        return Cache::tags('transaction')->remember($id, 3600, function () use ($id) {
-            self::where('id', $id)->firstOrFail();
+        return Cache::tags('transaction')->remember($txid, 3600, function () use ($txid) {
+            return self::where('transaction_id', $txid)->first();
         });
+
     }
 
     /**

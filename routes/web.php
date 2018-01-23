@@ -24,6 +24,7 @@ Route::get('/new-address', 'DashboardController@newAddress');
 Route::get('/addresses', 'DashboardController@addresses');
 Route::get('/pay', 'DashboardController@payView');
 Route::post('/pay', 'DashboardController@pay');
+Route::get('/transaction/{txid}', 'DashboardController@transactionView');
 
 
 //QR Generator

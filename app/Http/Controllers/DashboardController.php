@@ -64,13 +64,16 @@ class DashboardController extends Controller
         }
     }
 
-    public function transactionView($id)
+    public function transactionView($txid)
     {
-        $transaction = Transaction::getCachedByID($id);
-        if ($transaction->user_id == Auth::user()->id) {
-            return view("dashboard/transaction")
-                ->with("user", Auth::user())
-                ->with("transaction", $transaction);
+        if ($transaction = Transaction::getCachedByID($txid)) {
+            if ($transaction->user_id == Auth::user()->id) {
+                return view("dashboard/transaction")
+                    ->with("user", Auth::user())
+                    ->with("transaction", $transaction);
+            } else {
+                return abort(404);
+            }
         } else {
             return abort(404);
         }
