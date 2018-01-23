@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Cache;
 
 class GarlicoinController extends JsonRpcController
 {
-    public static $minconf = 12;
+    public static $minconf = 3;
 
     /**
      * GarlicoinController constructor.

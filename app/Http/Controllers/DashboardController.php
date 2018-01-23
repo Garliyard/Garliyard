@@ -86,4 +86,9 @@ class DashboardController extends Controller
                 ->with("amount", $request->input("amount"));
         }
     }
+
+    public function transactions()
+    {
+
+    }
 }
