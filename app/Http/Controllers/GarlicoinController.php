@@ -127,10 +127,6 @@ class GarlicoinController extends JsonRpcController
                     "to_address" => $address,
                     "amount" => $amount
                 ]);
-            } else if (strpos($data["error"]["message"], "fee") !== false) {
-                // Flash that they need to account for a fee.
-                session()->flash("error", $data["error"]["message"]);
-                return false;
             } else {
                 // Ambiguous error
                 session()->flash("error", $data["error"]["message"]);
