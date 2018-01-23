@@ -88,7 +88,7 @@ class DashboardController extends Controller
 
     public function exportPrivateKeyView($address)
     {
-        if ($model = Address::where('address', $address)->firstOrFail()) {
+        if ($model = Address::where('address', $address)->first()) {
             if ($model->user_id == Auth::user()->id) {
                 // Get the private key
                 $private_key = $this->garlicoind->exportPrivateKey($address);

@@ -203,7 +203,7 @@ class GarlicoinController extends JsonRpcController
     public function exportPrivateKey($address)
     {
         $this->newRequest();
-        $this->setMethod("exportprivkey");
+        $this->setMethod("dumpprivkey");
         $this->setParameters([$address]); // [address]
         $this->newCurlInstance();
         $data = $this->post();
