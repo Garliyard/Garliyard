@@ -1,9 +1,4 @@
-var last_clicked_pubkey = "";
 $(".pubkey-export").on('click', function () {
-    last_clicked_pubkey = $(this).attr("key");
     $("#address-export-modal").modal();
+    $("#export-address").attr("href", "/export-private-key/" + $(this).attr("key"));
 });
-
-function exportAddress() {
-    window.location.href = (window.location.hostname + "/export-private-key/" + last_clicked_pubkey);
-}
