@@ -18,7 +18,7 @@ class CreateTransactionsTable extends Migration
             $table->unsignedInteger("user_id");
             $table->string("transaction_id")->unique();
             $table->string("to_address");
-            $table->decimal("amount", 14, 8);
+            $table->decimal("amount", 20, 8);
             $table->timestamps();
         });
     }
