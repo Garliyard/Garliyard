@@ -16,6 +16,14 @@
                         <li><a href="/transactions">Transactions</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Other <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="https://github.com/Garliyard/Garliyard">GitHub</a></li>
+                        <li><a href="https://github.com/Garliyard/Garliyard/issues">Issue Tracker</a></li>
+                        <li><a href="https://github.com/Garliyard/Garliyard/issues/new">Report an issue</a></li>
+                    </ul>
+                </li>
             @endif
         </ul>
         <ul class="nav navbar-top-links navbar-right">
