@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Address;
 use App\Transaction;
-use \Illuminate\Support\Facades\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -89,6 +87,8 @@ class DashboardController extends Controller
 
     public function transactions()
     {
-
+        return view("dashboard/addresses")
+            ->with('user', Auth::user())
+            ->with('transactions', Transaction::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get());
     }
 }
