@@ -49,5 +49,11 @@
 @include("layouts.other.address_export_modal")
 <!-- Mainly scripts -->
 <script src="/js/app.js"></script>
+<script>
+    $(".pubkey-export").on('click', function () {
+        $("#address-export-modal").modal();
+        $("#export-address").attr("href", "/export-private-key/" + $(this).attr("key"));
+    });
+</script>
 </body>
 </html>

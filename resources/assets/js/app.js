@@ -6,7 +6,6 @@
 
 window.$ = window.jQuery = require('jquery');
 require('./bootstrap');
-require('./addresses');
 require('./analytics');
 // Google Analytics
 window.ga = window.ga || function () {
