@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Validator;
+use App\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
@@ -39,33 +40,27 @@ class RegisterController extends Controller
         $this->middleware('guest');
     }
 
-    /**
-     * Get a validator for an incoming registration request.
-     *
-     * @param  array  $data
-     * @return \Illuminate\Contracts\Validation\Validator
-     */
-    protected function validator(array $data)
+    public function register(Request $request)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed',
+        if ($error = $this->manualValidation($request)) return view("auth/register")->with("error", $error);
+        $user = User::create([
+            "username" => $request->input("username"),
+            "password" => bcrypt($request->input("password"))
         ]);
+        Auth::login($user);
+        return redirect("/home");
     }
 
-    /**
-     * Create a new user instance after a valid registration.
-     *
-     * @param  array  $data
-     * @return \App\User
-     */
-    protected function create(array $data)
+    private function manualValidation(Request $request)
     {
-        return User::create([
-            'name' => $data['name'],
-            'email' => $data['email'],
-            'password' => bcrypt($data['password']),
-        ]);
+        if (!$request->has("username")) return "Please provide a valid username";
+        if (!$request->has("password")) return "Please provide a valid password";
+        if (User::where('username', $request->input("username"))->first()) return "Username already exists";
+        return false;
+    }
+
+    public function registrationView()
+    {
+        return view("auth/register");
     }
 }
