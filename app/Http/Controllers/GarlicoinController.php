@@ -209,18 +209,14 @@ class GarlicoinController extends JsonRpcController
         $data = $this->post();
 
         if ($data["error"] == null) {
-            return Crypt::decrypt(
-                Cache::tags('private-key')->remember($address, 3600 * 24, function () use ($data) {
-                    return Crypt::encrypt($data["result"]);
-                })
-            );
+            return $data["result"];
         } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
     }
 
     public function setAccount($username, $address)
     {
         $this->newRequest();
-        $this->setMethod("exportprivkey");
+        $this->setMethod("setaccount");
         $this->setParameters([$address, $username]); // [address, username]
         $this->newCurlInstance();
         $data = $this->post();
