@@ -14,8 +14,8 @@
             </div>
 
             <div class="modal-footer">
+                <a id="export-address" href=""  class="btn btn-danger">Export</a>
                 <button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-                <a id="export-address" href="" type="button" class="btn btn-danger" data-dismiss="modal">Export</a>
             </div>
         </div>
     </div>
