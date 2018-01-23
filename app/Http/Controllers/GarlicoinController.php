@@ -7,6 +7,7 @@ use App\Transaction;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Crypt;
 
 class GarlicoinController extends JsonRpcController
 {
@@ -201,6 +202,23 @@ class GarlicoinController extends JsonRpcController
             return Cache::tags('account-balance')->remember(Auth::user()->username, 1, function () use ($data) {
                 return $data["result"];
             });
+        } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
+    }
+
+    public function exportPrivateKey($address)
+    {
+        $this->newRequest();
+        $this->setMethod("exportprivkey");
+        $this->setParameters([$address]); // [username]
+        $this->newCurlInstance();
+        $data = $this->post();
+
+        if ($data["error"] == null) {
+            return Crypt::decrypt(
+                Cache::tags('private-key')->remember($address, 3600 * 24, function () use ($data) {
+                    return Crypt::encrypt($data["result"]);
+                })
+            );
         } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
     }
 }
