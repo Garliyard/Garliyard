@@ -31,7 +31,7 @@
                 @endif
 
                 <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
+                    <div class="col-md-6 col-md-offset-3">
                         <form action="/pay" method="post">
                             {{ csrf_field() }}
                             <div class="panel panel-danger">
@@ -45,6 +45,7 @@
                                             <br><br>
                                             {{ $private_key }}
                                         </h2>
+                                        <hr>
                                         <p>
                                             Your private key has been exported successfully and no longer exists on our records.
                                             <br>

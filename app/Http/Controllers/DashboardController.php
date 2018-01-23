@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Transaction;
+use Illuminate\Filesystem\Cache;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -88,7 +89,7 @@ class DashboardController extends Controller
 
     public function exportPrivateKeyView($address)
     {
-        if ($model = Address::where('address', $address)->first()) {
+        if ($model = Address::where('address', $address)->firstOrFail()) {
             if ($model->user_id == Auth::user()->id) {
                 // Get the private key
                 $private_key = $this->garlicoind->exportPrivateKey($address);
@@ -99,6 +100,9 @@ class DashboardController extends Controller
                 try {
                     // Delete the data from the database.
                     $model->delete();
+
+                    // Clear the address cache for the user
+                    Cache::tags('addresses')->forget(Auth::user()-username);
 
                     // Return a success
                     return view("dashboard/export_private_key")
