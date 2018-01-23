@@ -20,7 +20,11 @@ Route::post('/register', 'Auth\RegisterController@register');
 
 // Dashboard
 Route::get('/home', 'DashboardController@home');
+Route::get('/new-address', 'DashboardController@newAddress');
+Route::get('/addresses', 'DashboardController@addresses');
+Route::get('/pay', 'DashboardController@payView');
+Route::post('/pay', 'DashboardController@pay');
+
 
 //QR Generator
-Route::get('/qr-code/{address}', 'Controller@qr');
 Route::get('/qr-code/{address}', 'Controller@qr');

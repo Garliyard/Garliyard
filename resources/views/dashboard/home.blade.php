@@ -20,6 +20,7 @@
         </div>
         <div class="wrapper wrapper-content">
             <div class="container-fluid">
+                @include("layouts.messages.wide_error")
                 <div class="row">
                     <div class="col-md-3">
                         <div class="panel panel-warning">
@@ -28,6 +29,9 @@
                             </div>
                             <div class="panel-body">
                                 <h1>{{ number_format($balance, 8) }} GRLC</h1>
+                            </div>
+                            <div class="panel-footer">
+                                <a href="/pay" class="btn btn-warning">SEND GRLC</a>
                             </div>
                         </div>
                     </div>
@@ -49,6 +53,7 @@
                                         </a>
                                     </span>
                                 </h1>
+                                <hr>
                                 <small>
                                     {{ strtoupper("This address was created " . \Carbon\Carbon::parse($address->created_at)->diffForHumans()) }}
                                     <br>

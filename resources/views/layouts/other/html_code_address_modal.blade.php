@@ -37,7 +37,7 @@
                             <div class="panel-body">
                                 You may embed this URL on your website inside an <code>&#60;img&#62;</code> tag by using the following format
                                 <h4>
-                                    <code>https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ $address->address }}</code>
+                                    <code>http://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ $address->address }}</code>
                                     <br><br>
                                     <br>
                                     Example

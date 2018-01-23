@@ -17,6 +17,7 @@ class CreateAddressesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger("user_id");
             $table->string("address")->unique();
+            $table->longText("label")->nullable();
             $table->timestamps();
         });
     }

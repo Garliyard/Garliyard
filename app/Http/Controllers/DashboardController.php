@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
@@ -31,23 +32,9 @@ class DashboardController extends Controller
             ->with('transactions', Transaction::getRecentTransactionsFromUserID(Auth::user()->id));
     }
 
-    /**
-     * Generate New Address
-     *
-     * /new-address
-     *
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-    public function newAddress()
-    {
-        return view("dashboard/home")
-            ->with('user', Auth::user())
-            ->with('address', $this->garlicoind->getLastAddress());
-    }
-
     public function addresses()
     {
-        return view("dashboard/home")
+        return view("dashboard/addresses")
             ->with('user', Auth::user())
             ->with('addresses', $this->garlicoind->getListOfAddresses());
     }
@@ -86,6 +73,38 @@ class DashboardController extends Controller
                 ->with("transaction", $transaction);
         } else {
             return abort(404);
+        }
+    }
+
+    /**
+     * Generate New Address
+     *
+     * /new-address
+     *
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
+    public function newAddress()
+    {
+        $this->garlicoind->getNewAddress();
+        return redirect("/home");
+    }
+
+    public function payView()
+    {
+        return view("dashboard/pay")
+            ->with("balance", $this->garlicoind->getBalance());
+    }
+
+    public function pay(Request $request)
+    {
+        if ($transaction = $this->garlicoind->pay($request->input("to_address"), $request->input("amount"))) {
+            return redirect("transaction/" . $transaction->id);
+        } else {
+            session()->flash("error", "You do not have enough funds to make this transaction");
+            return view("dashboard/pay")
+                ->with("balance", $this->garlicoind->getBalance())
+                ->with("to_address", $request->input("to_address"))
+                ->with("amount", $request->input("amount"));
         }
     }
 }

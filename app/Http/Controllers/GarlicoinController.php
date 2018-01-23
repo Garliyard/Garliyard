@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Transaction;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
@@ -36,24 +37,31 @@ class GarlicoinController extends JsonRpcController
      */
     public function getNewAddress()
     {
-        if (Cache::tags('new-address')->has(Auth::user()->username)) {
-            session("notice")->flash("Creating a new address takes space! - Please wait a minute before creating a new address.");
-            return Cache::tags('new-address')->get(Auth::user()->username);
-        } else {
-            $this->newRequest();
-            $this->setMethod("getnewaddress");
-            $this->setParameters([Auth::user()->username]); // [username]
-            $this->newCurlInstance();
-            $data = $this->post();
-
-            if ($data["error"] == null) {
-                return Address::create([
-                    "user_id" => Auth::user()->id,
-                    "address" => $data["result"]["address"]
-                ]);
+        if (Address::getUserCount() < 100) {
+            if (Cache::tags('new-address')->has(Auth::user()->username)) {
+                session()->flash("error", "Creating a new address takes valuable disk space! - Please wait a few minutes before creating a new address.");
+                return Cache::tags('new-address')->get(Auth::user()->username);
             } else {
-                return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
+                $this->newRequest();
+                $this->setMethod("getnewaddress");
+                $this->setParameters([Auth::user()->username]); // [username]
+                $this->newCurlInstance();
+                $data = $this->post();
+
+                if ($data["error"] == null) {
+                    return Cache::tags('new-address')->remember(Auth::user()->username, 5, function () use ($data) {
+                        return Address::create([
+                            "user_id" => Auth::user()->id,
+                            "address" => $data["result"]
+                        ]);
+                    });
+                } else {
+                    return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
+                }
             }
+        } else {
+            session()->flash("error", "You have reached the maximum number of addresses for your account");
+            return $this->getLastAddress();
         }
     }
 
@@ -66,10 +74,10 @@ class GarlicoinController extends JsonRpcController
      *
      * @return Address
      */
-    public function getListOfAddresses(): Address
+    public function getListOfAddresses(): Collection
     {
         return Cache::tags('addresses')->remember(Auth::user()->username, 3, function () {
-            return Address::where('user_id', Auth::user()->id)->get();
+            return Address::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get();
         });
     }
 

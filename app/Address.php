@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class Address extends Model
@@ -12,7 +13,7 @@ class Address extends Model
     protected $fillable = [
         "user_id",
         "address",
-        "balance"
+        "label"
     ];
 
     /**
@@ -35,8 +36,15 @@ class Address extends Model
      */
     public static function getCount(): int
     {
-        return Cache::remember('total-address-count', 10, function () {
+        return Cache::tags('address-count')->remember('total', 10, function () {
             return self::all()->count();
+        });
+    }
+
+    public static function getUserCount()
+    {
+        return Cache::tags('address-count')->remember(Auth::user()->username, 5, function () {
+            return self::where('user_id', Auth::user()->id)->get()->count();
         });
     }
 
