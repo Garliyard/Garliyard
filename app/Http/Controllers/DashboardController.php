@@ -89,6 +89,7 @@ class DashboardController extends Controller
     {
         return view("dashboard/transactions")
             ->with('user', Auth::user())
-            ->with('transactions', Transaction::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get());
+            ->with('transactions', Transaction::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get())
+            ->with('dont_truncate', true);
     }
 }
