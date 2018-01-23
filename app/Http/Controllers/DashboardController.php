@@ -100,7 +100,6 @@ class DashboardController extends Controller
         if ($transaction = $this->garlicoind->pay($request->input("to_address"), $request->input("amount"))) {
             return redirect("transaction/" . $transaction->id);
         } else {
-            session()->flash("error", "You do not have enough funds to make this transaction");
             return view("dashboard/pay")
                 ->with("balance", $this->garlicoind->getBalance())
                 ->with("to_address", $request->input("to_address"))

@@ -100,12 +100,17 @@ class GarlicoinController extends JsonRpcController
      *
      * @param string $address
      * @param float $amount
-     * @param float $fee
      * @return Transaction|bool
      */
     public function pay(string $address, float $amount)
     {
+        // Trim the address
+        $address = trim($address);
+
+        // Placeholder
         $data = [];
+
+        // Check if we have enough funds
         if ($this->hasEnough($amount)) {
             $this->newRequest();
             $this->setMethod("sendfrom");
@@ -113,11 +118,8 @@ class GarlicoinController extends JsonRpcController
             $this->newCurlInstance();
             $data = $this->post();
 
+            // If there's not an error, log the transaction.
             if ($data["error"] == null) {
-
-                // Forget the cached balance
-                Cache::tags('account-balance')->forget(Auth::user()->username);
-
                 // Return the successful transaction
                 return Transaction::create([
                     "user_id" => Auth::user()->id,
@@ -128,13 +130,14 @@ class GarlicoinController extends JsonRpcController
             } else if (strpos($data["error"]["message"], "fee") !== false) {
                 // Flash that they need to account for a fee.
                 session()->flash("error", $data["error"]["message"]);
-
                 return false;
             } else {
+                // Ambiguous error
                 session()->flash("error", $data["error"]["message"]);
                 return false;
             }
         } else {
+            // Insufficient funds
             session()->flash("error", "You do not have enough funds to make this transaction.");
             return false;
         }
@@ -164,20 +167,15 @@ class GarlicoinController extends JsonRpcController
      */
     public function getBalance()
     {
-        if (Cache::tags('account-balance')->has(Auth::user()->username)) {
-            return Cache::tags('account-balance')->get(Auth::user()->username);
+        $this->newRequest();
+        $this->setMethod("getbalance");
+        $this->setParameters([Auth::user()->username, 1]); // [username, minconf]
+        $this->newCurlInstance();
+        $data = $this->post();
+        if ($data["error"] == null) {
+            return $data["result"];
         } else {
-            $this->newRequest();
-            $this->setMethod("getbalance");
-            $this->setParameters([Auth::user()->username, 1]); // [username, minconf]
-            $this->newCurlInstance();
-            $data = $this->post();
-
-            if ($data["error"] == null) {
-                return Cache::tags('account-balance')->remember(Auth::user()->username, 1, function () use ($data) {
-                    return $data["result"];
-                });
-            } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
+            abort(500);
         }
     }
 
