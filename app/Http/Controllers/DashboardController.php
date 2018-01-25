@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Address;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -91,5 +92,31 @@ class DashboardController extends Controller
             ->with('user', Auth::user())
             ->with('transactions', Transaction::where('user_id', Auth::user()->id)->orderBy('id', 'desc')->get())
             ->with('dont_truncate', true);
+    }
+
+    public function labelEditorView($address)
+    {
+        if ($address = Address::where('address', $address)->firstOrFail()) {
+            if ($address->user_id == Auth::user()->id) {
+                return view("dashboard/label_editor")
+                    ->with("address", $address);
+            } else {
+                return abort(404);
+            }
+        }
+    }
+
+    public function labelEditorPost(Request $request)
+    {
+        if ($address = Address::where('address', $request->input("address"))->firstOrFail()) {
+            if ($address->user_id == Auth::user()->id) {
+                $address->update([
+                    "label" => $request->input("label")
+                ]);
+                return redirect("/addresses");
+            } else {
+                return abort(404);
+            }
+        }
     }
 }

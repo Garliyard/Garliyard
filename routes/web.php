@@ -26,6 +26,8 @@ Route::get('/transactions', 'DashboardController@transactions');
 Route::get('/pay', 'DashboardController@payView');
 Route::post('/pay', 'DashboardController@pay');
 Route::get('/transaction/{txid}', 'DashboardController@transactionView');
+Route::get('/edit-label/{address}', 'DashboardController@labelEditorView');
+Route::post('/edit-label/post', 'DashboardController@labelEditorPost');
 
 //QR Generator
 Route::get('/qr-code/{address}', 'Controller@qr');
