@@ -33,6 +33,8 @@
                                         Garliyard is an open source wallet system for
                                         <a href="https://garlicoin.io">Garlicoin</a> created in <a href="https://laravel.com">Laravel</a>
                                         with a few spreads of butter.
+                                        <br><br>
+                                        <a href="https://github.com/garliyard/garliyard" class="btn btn-info">View Source Code</a>
                                     </p>
                                     <hr>
                                     <div class="alert alert-success">
