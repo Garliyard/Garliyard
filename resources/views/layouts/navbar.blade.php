@@ -16,6 +16,14 @@
                         <li><a href="/transactions">Transactions</a></li>
                     </ul>
                 </li>
+
+                <li class="dropdown">
+                    <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Account <span class="caret"></span></a>
+                    <ul role="menu" class="dropdown-menu">
+                        <li><a href="/account/2fa">Two Factor Authentication</a></li>
+                    </ul>
+                </li>
+
                 <li class="dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Other <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
