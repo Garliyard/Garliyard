@@ -48,7 +48,7 @@
                                         <hr>
                                     @endif
                                     <input type="hidden" name="address" value="{{ $address->address }}">
-                                    <input type="text" name="label" placeholder="Enter your label here">
+                                    <input type="text" name="label" placeholder="Enter your label here" class="form-control">
                                 </div>
                                 <div class="panel-footer">
                                     <div class="pull-right">
