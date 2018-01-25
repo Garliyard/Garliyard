@@ -34,7 +34,9 @@
                                         <a href="https://garlicoin.io">Garlicoin</a> created in <a href="https://laravel.com">Laravel</a>
                                         with a few spreads of butter.
                                         <br><br>
-                                        <a href="https://github.com/garliyard/garliyard" class="btn btn-info">View Source Code</a>
+                                        <a href="https://github.com/garliyard/garliyard" class="btn btn-success">View Source Code</a>
+                                        <a href="/register" class="btn btn-success">Register</a>
+                                        <a href="/login" class="btn btn-success">Login</a>
                                     </p>
                                     <hr>
                                     <div class="alert alert-success">
