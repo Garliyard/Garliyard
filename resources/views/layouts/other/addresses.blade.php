@@ -10,7 +10,7 @@
     </thead>
 
     @foreach($addresses as $address)
-        <tr>
+        <tr class="{{ (\App\Address::getReceived($address->address) == 0.0) ? "table-success" : "table-warning" }}">
             <td>{{ $address->address }}</td>
             <td>{{ number_format(\App\Address::getReceived($address->address), 8) }}</td>
             <td>{{ $address->label or "No Label Present" }}</td>
