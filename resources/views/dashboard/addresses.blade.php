@@ -72,7 +72,7 @@
                 }
             ]
         });
-        $("#DataTables_Table_0_filter").html("<label><input type=\"search\" class=\"form-control\" placeholder=\"Search\" aria-controls=\"DataTables_Table_0\"></label>");
+        $("#DataTables_Table_0_filter").children("form")[0].addClass("form-control");
     });
 
 
