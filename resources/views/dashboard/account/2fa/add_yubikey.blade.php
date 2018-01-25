@@ -46,7 +46,7 @@
                                         <h2>
                                             Yubikey Required
                                         </h2>
-                                        <h4>Please plug in your hardware token and press the button in the field below</h4>
+                                        <h4>Please press the button on your hardware token</h4>
 
                                     </div>
                                     <hr>
