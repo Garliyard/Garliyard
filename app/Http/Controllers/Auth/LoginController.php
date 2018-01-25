@@ -51,7 +51,8 @@ class LoginController extends Controller
 
         if (Auth::attempt(["username" => $request->input("username"), "password" => $request->input("password")])) {
             // Check to see if the user has a yubikey associated to their account
-            if (Yubikey::where('user_id', Auth::user()->id)->get()->count() != 0) {
+
+            if (Yubikey::userHasYubikeys()) {
                 // They do - lock them in a session
                 session()->push("yubikey-needed", "true");
 
