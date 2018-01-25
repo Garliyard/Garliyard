@@ -28,8 +28,11 @@ class Yubikey extends Model
         return self::where('user_id', Auth::user()->id)->get();
     }
 
-    public static function doesUserOwnKey($key)
+    public static function doesUserOwnKey(User $user = null, string $key)
     {
-        return self::where('yubikey_identity', $key)->first();
+        return self::where([
+            'user_id' => ($user != null) ? $user->id : Auth::user()->id,
+            'yubikey_identity' => $key
+        ])->first();
     }
 }
