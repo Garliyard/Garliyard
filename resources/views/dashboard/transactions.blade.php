@@ -34,7 +34,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-warning">
                             <div class="panel-heading">
-                                ADDRESSES ({{ count($addresses) }})
+                                TRANSACTIONS ({{ count($transactions) }})
                             </div>
                             <div class="panel-body">
                                 @include("layouts.other.transactions")
