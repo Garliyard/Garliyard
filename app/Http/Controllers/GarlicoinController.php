@@ -38,32 +38,25 @@ class GarlicoinController extends JsonRpcController
     public function getNewAddress()
     {
         if (Address::getUserCount() < 100) {
-            if (Cache::tags('new-address')->has(Auth::user()->username)) {
-                session()->flash("error", "Creating a new address takes valuable disk space! - Please wait a few minutes before creating a new address.");
-                return Cache::tags('new-address')->get(Auth::user()->username);
+            $this->newRequest();
+            $this->setMethod("getnewaddress");
+            $this->setParameters([Auth::user()->username]); // [username]
+            $this->newCurlInstance();
+            $data = $this->post();
+
+            if ($data["error"] == null) {
+                // Clear the cache for all addresses
+                Cache::tags("addresses")->forget(Auth::user()->username);
+
+                // Return the data.
+                return Address::create([
+                    "user_id" => Auth::user()->id,
+                    "address" => $data["result"]
+                ]);
             } else {
-                $this->newRequest();
-                $this->setMethod("getnewaddress");
-                $this->setParameters([Auth::user()->username]); // [username]
-                $this->newCurlInstance();
-                $data = $this->post();
-
-                if ($data["error"] == null) {
-                    return Cache::tags('new-address')->remember(Auth::user()->username, 5, function () use ($data) {
-
-                        // Clear the cache for all addresses
-                        Cache::tags("addresses")->forget(Auth::user()->username);
-
-                        // Return the data.
-                        return Address::create([
-                            "user_id" => Auth::user()->id,
-                            "address" => $data["result"]
-                        ]);
-                    });
-                } else {
-                    return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
-                }
+                return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
             }
+
         } else {
             session()->flash("error", "You have reached the maximum number of addresses for your account");
             return $this->getLastAddress();
