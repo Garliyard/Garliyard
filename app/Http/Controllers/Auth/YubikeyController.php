@@ -52,11 +52,15 @@ class YubikeyController extends Controller
      */
     public function valid($otp)
     {
-        //Store the OTP for future reference.
-        $this->otp = $otp;
-        //Determine if the OTP is valid.
-        $this->last_result = $this->validate_class->check($otp);
-        return $this->last_result->success();
+        try {
+            //Store the OTP for future reference.
+            $this->otp = $otp;
+            //Determine if the OTP is valid.
+            $this->last_result = $this->validate_class->check($otp);
+            return $this->last_result->success();
+        } catch (\Exception $exception) {
+            return false;
+        }
     }
 
     public function getIdentity()
