@@ -72,7 +72,8 @@
                 }
             ]
         });
-        $("#DataTables_Table_0_filter").children("form")[0].addClass("form-control");
+        $("#DataTables_Table_0_filter label").html("");
+        $("#DataTables_Table_0_filter input").addClass("form-control");
     });
 
 
