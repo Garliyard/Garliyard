@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <style>
         .ml5px {
-            margin-left: -5px;
+            margin-left: -5px !important;
         }
     </style>
 </head>
