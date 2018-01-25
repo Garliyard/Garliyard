@@ -10,7 +10,11 @@
 
     <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
-
+    <style>
+        . ml5px {
+            margin-left: 5px;
+        }
+    </style>
 </head>
 
 <body class="top-navigation">
@@ -72,8 +76,12 @@
                 }
             ]
         });
-        $("#DataTables_Table_0_filter label").html("");
-        $("#DataTables_Table_0_filter input").addClass("form-control");
+        setTimeout(function () {
+            $("#DataTables_Table_0_filter label").html($("#DataTables_Table_0_filter label").html().replace("Search:", ""));
+            $("#DataTables_Table_0_filter input").addClass("form-control");
+            $("#DataTables_Table_0_filter input").addClass("ml5px");
+            $("#DataTables_Table_0_filter input").attr("placeholder", "Search");
+        }, 200);
     });
 
 
