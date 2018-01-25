@@ -5,6 +5,8 @@
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Garliyard - An alternative wallet system for Garlicoin">
+    <meta name="author" content="Elycin#4913">
 
     <title>{{ config("app.name", "Garliyard") }}</title>
 
