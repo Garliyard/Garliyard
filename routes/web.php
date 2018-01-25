@@ -11,12 +11,16 @@
 |
 */
 
-Route::get('/', 'Controller@index');
+// Authentication
 Route::get('/login', 'Auth\LoginController@loginView');
-Route::get('/logout', 'Auth\LoginController@logout');
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register', 'Auth\RegisterController@registrationView');
 Route::post('/register', 'Auth\RegisterController@register');
+Route::get('/logout', 'Auth\LoginController@logout');
+Route::get('/login/yubikey', 'Auth\LoginController@yubikeyAuthView');
+Route::post('/login/yubikey', 'Auth\LoginController@yubikeyAuthPost');
+
+Route::get('/', 'Controller@index');
 
 // Dashboard
 Route::get('/home', 'DashboardController@home');

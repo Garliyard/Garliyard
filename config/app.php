@@ -150,6 +150,20 @@ return [
     'rpc_host' => env('GARLICOIND_RPC_HOST', '127.0.0.1'),
     'rpc_port' => intval(env('GARLICOIND_RPC_PORT', 42070)),
 
+
+    /*
+    |--------------------------------------------------------------------------
+    | Yubikey Credentials
+    |--------------------------------------------------------------------------
+    |
+    | These are the credentials that will be used to validate users.
+    |
+    */
+
+    'yubikey_id' => env('YUBICO_ID', ""),
+    'yubikey_secret' => env('YUBICO_SECRET', ""),
+
+
     'providers' => [
 
         /*

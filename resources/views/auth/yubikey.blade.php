@@ -49,7 +49,7 @@
 
                                     </div>
                                     <hr>
-                                    <input type="text" placeholder="Yubikey OTP Token">
+                                    <input type="text" name="yubikey" placeholder="Yubikey OTP Token" autofocus>
                                 </div>
                                 <div class="panel-footer">
                                     <div class="pull-right">
