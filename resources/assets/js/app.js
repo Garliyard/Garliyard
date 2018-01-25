@@ -6,8 +6,10 @@
 
 window.$ = window.jQuery = require('jquery');
 require('./bootstrap');
-require('./analytics');
+
 // Google Analytics
+require('./analytics');
+
 window.ga = window.ga || function () {
     (ga.q = ga.q || []).push(arguments)
 };
