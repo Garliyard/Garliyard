@@ -6,6 +6,7 @@ use App\Address;
 use App\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Cache;
 
 class DashboardController extends Controller
 {
@@ -110,9 +111,16 @@ class DashboardController extends Controller
     {
         if ($address = Address::where('address', $request->input("address"))->firstOrFail()) {
             if ($address->user_id == Auth::user()->id) {
+
+                // Update the value in the database
                 $address->update([
                     "label" => $request->input("label")
                 ]);
+
+                // Purge the cache for the user.
+                Cache::tags('addresses')->forget(Auth::user()->username);
+
+                // Return the redirect to the view.
                 return redirect("/addresses");
             } else {
                 return abort(404);
