@@ -9,6 +9,7 @@
     <title>{{ config("app.name", "Garliyard") }}</title>
 
     <link href="/css/app.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
 
 </head>
 
@@ -49,5 +50,6 @@
 @include("layouts.other.address_export_modal")
 <!-- Mainly scripts -->
 <script src="/js/app.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 </body>
 </html>
