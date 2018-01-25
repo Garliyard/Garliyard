@@ -11,7 +11,7 @@
         </thead>
 
         @foreach($addresses as $address)
-            <tr class="{{ (\App\Address::getReceived($address->address) == 0.0) ? "success" : "warning" }}">
+            <tr class="{{ (\App\Address::getReceived($address->address) != 0.0) ? "warning" : "" }}">
                 <td>{{ $address->address }}</td>
                 <td>{{ number_format(\App\Address::getReceived($address->address), 8) }}</td>
                 <td>{{ $address->label or "No Label Present" }}</td>
