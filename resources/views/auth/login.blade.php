@@ -14,11 +14,12 @@
     <div class="row">
         <div class="col-md-6">
             <h2 class="font-bold">Welcome to {{ config('app.name', 'Garlicoin') }}</h2>
-
-            <p>
-                This project is in a development state, and it should be used with caution.
-            </p>
-
+            <ul>
+                <li>No service fees</li>
+                <li>100 unique addresses</li>
+                <li>Balance confirmed after 3 confirmations</li>
+                <li>Instantaneous blockchain interaction (transactions are not delayed)</li>
+            </ul>
             <p>
                 If you need support, please contact <strong>{{ env('DISCORD_SUPPORT', 'Undefined#0000') }}</strong> on Discord.
             </p>
