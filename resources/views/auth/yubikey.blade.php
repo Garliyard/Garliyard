@@ -30,37 +30,38 @@
                     </div>
                 @endif
 
-                <div class="row">
-                    <div class="col-md-4 col-md-offset-4">
-                        <form action="/login/yubikey" method="post">
-                            {{ csrf_field() }}
-                            <div class="panel panel-info">
-                                <div class="panel-heading">
-                                    TWO FACTOR AUTHENTICATION - YUBIKEY
-                                </div>
-                                <div class="panel-body">
-                                    <div class="text-center">
-                                        <h1>
-                                            <span class="fa fa-key fa-3x"></span>
-                                            <br><br>
-                                            Yubikey Required
-                                        </h1>
-                                        <h3>Please plug in your hardware token and press the button in the field below</h3>
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <form action="/login/yubikey" method="post">
+                                {{ csrf_field() }}
+                                <div class="panel panel-danger">
+                                    <div class="panel-heading">
+                                        TWO FACTOR AUTHENTICATION - YUBIKEY
+                                    </div>
+                                    <div class="panel-body">
+                                        <div class="text-center">
+                                            <br>
+                                            <span class="fa fa-key fa-4x"></span>
+                                            <br>
+                                            <h2>
+                                                Yubikey Required
+                                            </h2>
+                                            <h4>Please press the button on your hardware token</h4>
 
+                                        </div>
+                                        <hr>
+                                        <input class="form-control" type="text" name="yubikey" placeholder="Yubikey OTP Token" autofocus>
                                     </div>
-                                    <hr>
-                                    <input type="text" name="yubikey" placeholder="Yubikey OTP Token" autofocus>
-                                </div>
-                                <div class="panel-footer">
-                                    <div class="pull-right">
-                                        <a class="btn btn-danger" href="/logout">LOGOUT</a>
-                                        <button type="submit" class="btn btn-warning" href="https://explorer.grlc-bakery.fun/tx/{{ $transaction->transaction_id }}">LOGIN</button>
+                                    <div class="panel-footer">
+                                        <div class="pull-right">
+                                            <a class="btn btn-danger" href="/logout">LOGOUT</a>
+                                        </div>
+                                        <br><br>
                                     </div>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
-                </div>
             </div>
         </div>
     </div>

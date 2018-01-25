@@ -17,8 +17,8 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register', 'Auth\RegisterController@registrationView');
 Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/logout', 'Auth\LoginController@logout');
-Route::get('/login/yubikey', 'Auth\LoginController@yubikeyAuthView');
-Route::post('/login/yubikey', 'Auth\LoginController@yubikeyAuthPost');
+Route::get('/login/yubikey', 'Auth\TwoFactorController@yubikeyAuthView');
+Route::post('/login/yubikey', 'Auth\TwoFactorController@yubikeyAuthPost');
 
 Route::get('/', 'Controller@index');
 
@@ -35,6 +35,8 @@ Route::post('/edit-label/post', 'DashboardController@labelEditorPost');
 
 // Account
 Route::get('/account/2fa', 'DashboardController@accountTwoFactorIndex');
+Route::get('/account/2fa/yubikey/add', 'DashboardController@addYubikeyView');
+Route::post('/account/2fa/yubikey/add', 'DashboardController@addYubikey');
 
 //QR Generator
 Route::get('/qr-code/{address}', 'Controller@qr');

@@ -30,9 +30,21 @@
                     </div>
                 @endif
 
+                @if(session()->has("success"))
+                    <div class="row">
+                        <div class="col-md-4 col-md-offset-4">
+                            <div class="alert alert-danger">
+                                {{ session()->get("success") }}
+                            </div>
+                        </div>
+                    </div>
+                @endif
+
                 <div class="row">
-                    @if(\App\Yubikey::userHasYubikeys()))
-                        @include("dashboard.account.2fa.layouts.yubikeys")
+                    @if(\App\Yubikey::userHasYubikeys())
+
+                    @include("dashboard.account.2fa.layouts.yubikeys")
+
                     @else
                         @include("dashboard.account.2fa.layouts.no_2fa")
                     @endif

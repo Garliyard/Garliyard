@@ -7,6 +7,11 @@ use Illuminate\Support\Facades\Auth;
 
 class Yubikey extends Model
 {
+    protected $fillable = [
+        "user_id",
+        "yubikey_identity"
+    ];
+
     public static function userHasYubikeys()
     {
         return self::getUserKeys()->count() != 0;
