@@ -17,7 +17,7 @@
                         <br>
                         <b>Added:</b> {{ \Carbon\Carbon::parse($yubikey->created_at)->toDayDateTimeString() }} ({{ \Carbon\Carbon::parse($yubikey->created_at)->diffForHumans() }})
                         <br><br>
-                        <a class="btn btn-danger" href="/account/2fa/yubikey-deauth/{{ $yubikey->yubikey_identity }}">DEAUTHORIZE</a>
+                        <a class="btn btn-danger" href="/account/2fa/yubikey/delete/{{ $yubikey->yubikey_identity }}">DEAUTHORIZE</a>
                     </div>
                 </div>
                 <hr>

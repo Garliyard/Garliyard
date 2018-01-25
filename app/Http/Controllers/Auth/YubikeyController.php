@@ -63,8 +63,8 @@ class YubikeyController extends Controller
         }
     }
 
-    public function getIdentity()
+    public function getIdentity($otp = false)
     {
-        return substr($this->otp, 0, 12);
+        return substr(($otp) ? $otp : $this->otp, 0, 12);
     }
 }

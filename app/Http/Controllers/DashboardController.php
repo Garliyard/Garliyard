@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $this->garlicoind = new GarlicoinController();
     }
 
-    public function additionalAuthNeeded()
+    public static function additionalAuthNeeded()
     {
         if (session()->has("yubikey-needed")) return redirect("/login/yubikey");
         return false;
@@ -35,7 +35,7 @@ class DashboardController extends Controller
      */
     public function home()
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         return view("dashboard/home")
             ->with('user', Auth::user())
@@ -53,7 +53,7 @@ class DashboardController extends Controller
      */
     public function addresses()
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         return view("dashboard/addresses")
             ->with('user', Auth::user())
@@ -70,7 +70,7 @@ class DashboardController extends Controller
      */
     public function transactionView($txid)
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         if ($transaction = Transaction::getCachedByID($txid)) {
             if ($transaction->user_id == Auth::user()->id) {
@@ -94,7 +94,7 @@ class DashboardController extends Controller
      */
     public function newAddress()
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         $this->garlicoind->getNewAddress();
         return redirect("/home");
@@ -109,7 +109,7 @@ class DashboardController extends Controller
      */
     public function payView()
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         return view("dashboard/pay")
             ->with("balance", $this->garlicoind->getBalance());
@@ -125,7 +125,7 @@ class DashboardController extends Controller
      */
     public function pay(Request $request)
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         if ($transaction = $this->garlicoind->pay($request->input("to_address"), $request->input("amount"))) {
             return redirect("transaction/" . $transaction->transaction_id);
@@ -146,7 +146,7 @@ class DashboardController extends Controller
      */
     public function transactions()
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         return view("dashboard/transactions")
             ->with('user', Auth::user())
@@ -164,7 +164,7 @@ class DashboardController extends Controller
      */
     public function labelEditorView($address)
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         if ($address = Address::where('address', $address)->firstOrFail()) {
             if ($address->user_id == Auth::user()->id) {
@@ -186,7 +186,7 @@ class DashboardController extends Controller
      */
     public function labelEditorPost(Request $request)
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         if ($address = Address::where('address', $request->input("address"))->firstOrFail()) {
             if ($address->user_id == Auth::user()->id) {
@@ -209,44 +209,12 @@ class DashboardController extends Controller
 
     public function accountTwoFactorIndex()
     {
-        if ($need = $this->additionalAuthNeeded()) return $need;
+        if ($need = self::additionalAuthNeeded()) return $need;
 
         return view("dashboard/account/2fa/index")
             ->with("yubikeys", Yubikey::getUserKeys());
     }
 
-    public function addYubikeyView()
-    {
-        if ($need = $this->additionalAuthNeeded()) return $need;
-
-        return view("dashboard/account/2fa/add_yubikey");
-    }
-
-    public function addYubikey(Request $request)
-    {
-        $yubikey = new YubikeyController();
-
-        if ($need = $this->additionalAuthNeeded()) return $need;
-
-        if ($yubikey->valid($request->input("yubikey"))) {
-
-            if (!Yubikey::doesUserOwnKey($yubikey->getIdentity())) {
-                Yubikey::create([
-                    "user_id" => Auth::user()->id,
-                    "yubikey_identity" => $yubikey->getIdentity()
-                ]);
-
-                session()->flash("success", "Your Yubikey was successfully verified with Yubico - You will now require it to login.");
-                return redirect("/account/2fa");
-            } else {
-                session()->flash("error", "The Yubikey you provided is already authorized to your account.");
-                return redirect("/account/2fa");
-            }
-        } else {
-            session()->flash("error", "OTP Token was invalid - please try again.");
-            return redirect("/account/2fa/yubikey/add");
-        }
-    }
 
 
 }

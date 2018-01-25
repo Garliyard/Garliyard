@@ -35,8 +35,9 @@ Route::post('/edit-label/post', 'DashboardController@labelEditorPost');
 
 // Account
 Route::get('/account/2fa', 'DashboardController@accountTwoFactorIndex');
-Route::get('/account/2fa/yubikey/add', 'DashboardController@addYubikeyView');
-Route::post('/account/2fa/yubikey/add', 'DashboardController@addYubikey');
+Route::get('/account/2fa/yubikey/add', 'Auth\TwoFactorController@addYubikeyView');
+Route::post('/account/2fa/yubikey/add', 'Auth\TwoFactorController@addYubikey');
+Route::get('/account/2fa/yubikey/delete/{yubikey}', 'Auth\TwoFactorController@deauthorizeYubikey');
 
 //QR Generator
 Route::get('/qr-code/{address}', 'Controller@qr');

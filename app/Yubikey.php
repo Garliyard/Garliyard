@@ -9,6 +9,7 @@ class Yubikey extends Model
 {
     protected $fillable = [
         "user_id",
+        "name",
         "yubikey_identity"
     ];
 
