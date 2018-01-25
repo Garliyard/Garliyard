@@ -7,7 +7,7 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-            @if(\Illuminate\Support\Facades\Auth::check())
+            @if(\Illuminate\Support\Facades\Auth::check()  && (session()->has("yubikey-needed") == false))
                 <li class="dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Navigation <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">
@@ -35,7 +35,7 @@
             @endif
         </ul>
         <ul class="nav navbar-top-links navbar-right">
-            @if(\Illuminate\Support\Facades\Auth::check())
+            @if(\Illuminate\Support\Facades\Auth::check() && (session()->has("yubikey-needed") == false))
                 <li>
                     <a href="/logout">
                         <i class="fa fa-sign-out"></i> Log out
