@@ -17,7 +17,7 @@
 <body class="top-navigation">
 <div id="wrapper">
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom white-bg">
+        <div class="row border-bottom white-bg">d
             @include("layouts.navbar")
         </div>
         <div class="wrapper wrapper-content">
@@ -35,12 +35,10 @@
                                         with a few spreads of butter.
                                     </p>
                                     <hr>
-                                    <div class="alert alert-warning">
-                                        Garliyard is entirely experimental, and bugs may exist in production.
-                                        <br>
-                                        Please use this wallet with caution.
+                                    <div class="alert alert-success">
+                                        Garliyard is now running stable in production without issues.
                                         <br><br>
-                                        If your funds do not appear on the website after being sent, please contact <b>Elycin#4913</b>
+                                        Under the circumstance that issues occur, please contact <b>Elycin#4913</b>
                                     </div>
                                 </div>
                             </div>
