@@ -11,7 +11,7 @@
     <link href="/css/app.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css">
     <style>
-        . ml5px {
+        .ml5px {
             margin-left: 5px;
         }
     </style>
