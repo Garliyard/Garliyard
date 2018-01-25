@@ -114,7 +114,7 @@ class DashboardController extends Controller
 
                 // Update the value in the database
                 $address->update([
-                    "label" => $request->input("label")
+                    "label" => substr($request->input("label"), 0, 80)
                 ]);
 
                 // Purge the cache for the user.
