@@ -56,6 +56,8 @@
                                     <br>
                                     Instantaneous blockchain interaction (transactions are not delayed)
                                     <br>
+                                    QR Code generator
+                                    <br>
                                     Blockchain explorer (coming soon)
                                     <br>
                                     Developer API (coming soon)
