@@ -35,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="panel panel-warning">
                             <div class="panel-heading">
-                                ADDRESSES ({{ count($addresses) }})
+                                ADDRESSES
                             </div>
                             <div class="panel-body">
                                 @include("layouts.other.addresses")
@@ -52,32 +52,29 @@
 <script src="/js/app.js"></script>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
 <script>
-    $(document).ready(function(){
-        $('.dataTable').DataTable({
-            pageLength: 100,
+    $(document).ready(function () {
+        $('.dataTables').DataTable({
+            pageLength: 25,
             responsive: true,
             dom: '<"html5buttons"B>lTfgitp',
             buttons: [
                 {extend: 'copy'},
                 {extend: 'csv'},
-                {extend: 'excel', title: 'ExampleFile'},
-                {extend: 'pdf', title: 'ExampleFile'},
-
-                {extend: 'print',
-                    customize: function (win){
+                {extend: 'excel'},
+                {extend: 'pdf'},
+                {
+                    extend: 'print',
+                    customize: function (win) {
                         $(win.document.body).addClass('white-bg');
                         $(win.document.body).css('font-size', '10px');
-
-                        $(win.document.body).find('table')
-                            .addClass('compact')
-                            .css('font-size', 'inherit');
+                        $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
+                        $("#DataTables_Table_0_filter").html("<input type=\"search\" class=\"form-control\" placeholder=\"Search\" aria-controls=\"DataTables_Table_0\">");
                     }
                 }
             ]
-
         });
-
     });
+
 
 </script>
 </body>
