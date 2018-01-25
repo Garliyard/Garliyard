@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Address;
 use App\Transaction;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
@@ -37,29 +38,49 @@ class GarlicoinController extends JsonRpcController
      */
     public function getNewAddress()
     {
-        if (Address::getUserCount() != 100) {
-            $this->newRequest();
-            $this->setMethod("getnewaddress");
-            $this->setParameters([Auth::user()->username]); // [username]
-            $this->newCurlInstance();
-            $data = $this->post();
-
-            if ($data["error"] == null) {
-                // Clear the cache for all addresses
-                Cache::tags("addresses")->forget(Auth::user()->username);
-
-                // Return the data.
-                return Address::create([
-                    "user_id" => Auth::user()->id,
-                    "address" => $data["result"]
-                ]);
+        if ($this->hasAccountMatured()) {
+            if (Address::getUserCount() != 100) {
+                return $this->getNewAddressInternal();
             } else {
-                return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
+                session()->flash("error", "You have reached the maximum number of addresses for your account");
+                return $this->getLastAddress();
             }
-
         } else {
-            session()->flash("error", "You have reached the maximum number of addresses for your account");
-            return $this->getLastAddress();
+            if (Address::getUserCount() != 10) {
+                return $this->getNewAddressInternal();
+            } else {
+                session()->flash("error", "Your account is still ralatively new, as a precaution your account is currently limited to a maximum of 10 addresses to prevent spam.");
+                return $this->getLastAddress();
+            }
+        }
+    }
+
+    /**
+     * Get New Address Internal
+     *
+     * The internal part of GetNewAddress so things aren't WET (Write everything twice)
+     *
+     * @return mixed
+     */
+    public function getNewAddressInternal()
+    {
+        $this->newRequest();
+        $this->setMethod("getnewaddress");
+        $this->setParameters([Auth::user()->username]); // [username]
+        $this->newCurlInstance();
+        $data = $this->post();
+
+        if ($data["error"] == null) {
+            // Clear the cache for all addresses
+            Cache::tags("addresses")->forget(Auth::user()->username);
+
+            // Return the data.
+            return Address::create([
+                "user_id" => Auth::user()->id,
+                "address" => $data["result"]
+            ]);
+        } else {
+            return ($this->isAppEnvironmentLocal()) ? dd($data) : false;
         }
     }
 
@@ -173,6 +194,13 @@ class GarlicoinController extends JsonRpcController
         }
     }
 
+    /**
+     * Get Server Balance
+     *
+     * Get's the current balance of the whole instance.
+     *
+     * @return mixed
+     */
     public function getServerBalance()
     {
         $this->newRequest();
@@ -187,6 +215,13 @@ class GarlicoinController extends JsonRpcController
         }
     }
 
+    /**
+     * Get Address Balance
+     *
+     * Get's an addresses balance.
+     *
+     * @param $address
+     */
     public function getAddressBalance($address)
     {
         $this->newRequest();
@@ -200,6 +235,13 @@ class GarlicoinController extends JsonRpcController
         } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
     }
 
+    /**
+     * Exxport Private Key
+     *
+     * Exports a private key to the relative passed address
+     *
+     * @param $address
+     */
     public function exportPrivateKey($address)
     {
         $this->newRequest();
@@ -213,6 +255,15 @@ class GarlicoinController extends JsonRpcController
         } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
     }
 
+    /**
+     * Set Address Account
+     *
+     * Associates an address with an account
+     *
+     * @param $username
+     * @param $address
+     * @return bool|void
+     */
     public function setAccount($username, $address)
     {
         $this->newRequest();
@@ -225,9 +276,24 @@ class GarlicoinController extends JsonRpcController
         } else return ($this->isAppEnvironmentLocal()) ? dd($data) : abort(500);
     }
 
+    /**
+     * Nullify Address Owner (deprecated)
+     *
+     * This function was originally created for the export function, but that caused issues
+     * with negativve balances in the system.
+     * This function is no longer used.
+     *
+     * @param $address
+     * @return bool|void
+     */
     public function nullifyAddressOwner($address)
     {
         $rand = bin2hex(openssl_random_pseudo_bytes(8));
         return $this->setAccount($rand, $address);
+    }
+
+    private function hasAccountMatured()
+    {
+        return (Carbon::now()->getTimestamp() - Carbon::parse(Auth::user()->created_at)->getTimestamp()) > 3600;
     }
 }
