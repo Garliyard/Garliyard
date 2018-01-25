@@ -14,7 +14,7 @@ class GarlicoinController extends JsonRpcController
     public static $minconf = 3;
     private static $max_address_maturity = [
         "new" => 10,
-        "old" => 10,
+        "old" => 100,
     ];
 
     /**
