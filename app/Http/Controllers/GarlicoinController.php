@@ -37,7 +37,7 @@ class GarlicoinController extends JsonRpcController
      */
     public function getNewAddress()
     {
-        if (Address::getUserCount() < 100) {
+        if (Address::getUserCount() != 100) {
             $this->newRequest();
             $this->setMethod("getnewaddress");
             $this->setParameters([Auth::user()->username]); // [username]
