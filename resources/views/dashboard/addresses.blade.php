@@ -68,11 +68,11 @@
                         $(win.document.body).addClass('white-bg');
                         $(win.document.body).css('font-size', '10px');
                         $(win.document.body).find('table').addClass('compact').css('font-size', 'inherit');
-                        $("#DataTables_Table_0_filter").html("<input type=\"search\" class=\"form-control\" placeholder=\"Search\" aria-controls=\"DataTables_Table_0\">");
                     }
                 }
             ]
         });
+        $("#DataTables_Table_0_filter").html("<label><input type=\"search\" class=\"form-control\" placeholder=\"Search\" aria-controls=\"DataTables_Table_0\"></label>");
     });
 
 
