@@ -17,7 +17,7 @@
 <body class="top-navigation">
 <div id="wrapper">
     <div id="page-wrapper" class="gray-bg">
-        <div class="row border-bottom white-bg">d
+        <div class="row border-bottom white-bg">
             @include("layouts.navbar")
         </div>
         <div class="wrapper wrapper-content">
