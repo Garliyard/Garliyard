@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\User;
 use App\Yubikey;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -60,6 +61,7 @@ class LoginController extends Controller
                 return redirect("/login/yubikey");
             } else {
                 // They don't, let them continue.
+                User::welcome();
                 return redirect("/home");
             }
         } else {

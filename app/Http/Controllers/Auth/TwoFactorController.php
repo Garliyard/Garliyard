@@ -9,6 +9,7 @@
 namespace App\Http\Controllers\Auth;
 
 
+use App\User;
 use App\Yubikey;
 use Illuminate\Http\Request;
 
@@ -49,6 +50,7 @@ class TwoFactorController
 
                     // The yubikey belongs to the user - log them in
                     session()->forget("yubikey-needed");
+                    User::welcome();
                     return redirect("/home");
 
                 } else {

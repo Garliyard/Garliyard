@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
 
 class User extends Authenticatable
@@ -38,5 +39,10 @@ class User extends Authenticatable
         return Cache::remember('total-user-count', 10, function () {
             return self::all()->count();
         });
+    }
+
+    public static function welcome()
+    {
+        session()->flash("warning", sprintf("Welcome Back, %s! %s", Auth::user(), env("MOTD", "")));
     }
 }
