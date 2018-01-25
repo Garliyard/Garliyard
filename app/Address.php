@@ -44,9 +44,7 @@ class Address extends Model
 
     public static function getUserCount()
     {
-        return Cache::tags('address-count')->remember(Auth::user()->username, 5, function () {
-            return self::where('user_id', Auth::user()->id)->get()->count();
-        });
+        return self::where('user_id', Auth::user()->id)->get()->count();
     }
 
     public static function getReceived($address)
