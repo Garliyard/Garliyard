@@ -1,4 +1,4 @@
-<table class="table table-responsive">
+<table class="table table-responsive table-bordered">
     <thead>
     <tr>
         <th>Address</th>
@@ -10,7 +10,7 @@
     </thead>
 
     @foreach($addresses as $address)
-        <tr class="{{ (\App\Address::getReceived($address->address) == 0.0) ? "table-success" : "table-warning" }}">
+        <tr class="{{ (\App\Address::getReceived($address->address) == 0.0) ? "success" : "warning" }}">
             <td>{{ $address->address }}</td>
             <td>{{ number_format(\App\Address::getReceived($address->address), 8) }}</td>
             <td>{{ $address->label or "No Label Present" }}</td>
