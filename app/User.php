@@ -43,6 +43,6 @@ class User extends Authenticatable
 
     public static function welcome()
     {
-        session()->flash("warning", sprintf("Welcome Back, %s! %s", Auth::user(), env("MOTD", "")));
+        session()->flash("warning", sprintf("Welcome Back, %s! %s", Auth::user()->username, env("MOTD", "")));
     }
 }
