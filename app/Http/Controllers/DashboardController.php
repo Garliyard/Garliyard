@@ -34,6 +34,13 @@ class DashboardController extends Controller
             ->with('transactions', Transaction::getRecentTransactionsFromUserID(Auth::user()->id));
     }
 
+    /**
+     * Addresses View
+     *
+     * The distinctive view that returns all the addresses for the user.
+     *
+     * @return $this
+     */
     public function addresses()
     {
         return view("dashboard/addresses")
@@ -41,6 +48,14 @@ class DashboardController extends Controller
             ->with('addresses', $this->garlicoind->getListOfAddresses());
     }
 
+    /**
+     * Transaction View
+     *
+     * The view that returns information about the transaction they made.
+     *
+     * @param $txid
+     * @return $this
+     */
     public function transactionView($txid)
     {
         if ($transaction = Transaction::getCachedByID($txid)) {
@@ -69,12 +84,27 @@ class DashboardController extends Controller
         return redirect("/home");
     }
 
+    /**
+     * Pay view
+     *
+     * The user interface the user gets where they can put in an address to pay a user
+     *
+     * @return $this
+     */
     public function payView()
     {
         return view("dashboard/pay")
             ->with("balance", $this->garlicoind->getBalance());
     }
 
+    /**
+     * Pay Post Function
+     *
+     * The function that calls the garlicoin controller to pay the $adddress
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function pay(Request $request)
     {
         if ($transaction = $this->garlicoind->pay($request->input("to_address"), $request->input("amount"))) {
@@ -87,6 +117,13 @@ class DashboardController extends Controller
         }
     }
 
+    /**
+     * Transactions View
+     *
+     * List all the transactions on the distinctive page.
+     *
+     * @return mixed
+     */
     public function transactions()
     {
         return view("dashboard/transactions")
@@ -95,6 +132,14 @@ class DashboardController extends Controller
             ->with('dont_truncate', true);
     }
 
+    /**
+     * Label Editor View
+     *
+     * The user interface that allow the user to enter a label
+     *
+     * @param $address
+     * @return $this
+     */
     public function labelEditorView($address)
     {
         if ($address = Address::where('address', $address)->firstOrFail()) {
@@ -107,6 +152,14 @@ class DashboardController extends Controller
         }
     }
 
+    /**
+     * Post function for label editor
+     *
+     * When the user is done editing the label, this is the recieving function that interacts with the database.
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function labelEditorPost(Request $request)
     {
         if ($address = Address::where('address', $request->input("address"))->firstOrFail()) {
