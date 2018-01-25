@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table table-bordered">
+    <table class="table table-bordered dataTable">
         <thead>
         <tr>
             <th>Address</th>
