@@ -24,6 +24,12 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col-lg-8 col-lg-offset-2">
+                        <div class="alert alert-success">
+                            Garliyard is now running stable in production without issues.
+                            <br><br>
+                            Under the circumstance that issues occur, please contact <b>Elycin#4913</b>
+                        </div>
+                        <br>
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 <div>
@@ -39,11 +45,18 @@
                                         <a href="/login" class="btn btn-success">Login</a>
                                     </p>
                                     <hr>
-                                    <div class="alert alert-success">
-                                        Garliyard is now running stable in production without issues.
-                                        <br><br>
-                                        Under the circumstance that issues occur, please contact <b>Elycin#4913</b>
-                                    </div>
+                                    <h2>
+                                        Features
+                                    </h2>
+                                    <ul>
+                                        <li>No service fees</li>
+                                        <li>100 unique addresses</li>
+                                        <li>Balance confirmed after 3 confirmations</li>
+                                        <li>Instantaneous blockchain interaction (transactions are not delayed)</li>
+                                        <li>Blockchain explorer (coming soon)</li>
+                                        <li>Developer API (coming soon)</li>
+                                        <li>Two-Factor Authentication via Yubikey/Google Authenticator (coming soon)</li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
