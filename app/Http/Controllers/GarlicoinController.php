@@ -12,6 +12,10 @@ use Illuminate\Support\Facades\Cache;
 class GarlicoinController extends JsonRpcController
 {
     public static $minconf = 3;
+    private static $max_address_maturity = [
+        "new" => 10,
+        "old" => 10,
+    ];
 
     /**
      * GarlicoinController constructor.
@@ -38,17 +42,24 @@ class GarlicoinController extends JsonRpcController
      */
     public function getNewAddress()
     {
+        // Check to see if their account is mature.
         if ($this->hasAccountMatured()) {
-            if (Address::getUserCount() != 100) {
+            // The account is mature
+            if (Address::getUserCount() != self::$max_address_maturity["old"]) {
+                // The user has less than the address hard limit, we can create one.
                 return $this->getNewAddressInternal();
             } else {
+                // The user has reached the hard limit.
                 session()->flash("error", "You have reached the maximum number of addresses for your account");
                 return $this->getLastAddress();
             }
         } else {
-            if (Address::getUserCount() != 10) {
+            // The account is not mature yet
+            if (Address::getUserCount() != self::$max_address_maturity["new"]) {
+                // The user has less than the address hard limit, we can create one.
                 return $this->getNewAddressInternal();
             } else {
+                // The user has reached the hard limit for their age.
                 session()->flash("error", "Your account is still ralatively new, as a precaution your account is currently limited to a maximum of 10 addresses to prevent spam.");
                 return $this->getLastAddress();
             }
