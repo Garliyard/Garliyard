@@ -1,4 +1,4 @@
-<div class="col-md-4 col-md-offset-4">>
+<div class="col-md-4 col-md-offset-4">
     <div class="panel panel-warning">
         <div class="panel-heading">
             GOOGLE AUTHENTICATOR
