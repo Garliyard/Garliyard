@@ -7,7 +7,9 @@
                 <small class="font-bold">You can crop this window or scan it with a mobile device to send currency to this address.</small>
             </div>
             <div class="modal-body text-center">
-                <img src="data:image/png;base64,{{ base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(200)->generate($address->address)) }}" />
+                <a href="https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ $address->address }}" target="_blank">
+                    <img src="data:image/png;base64,{{ base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(200)->generate($address->address)) }}" />
+                </a>
 
                 <h1>{{ $address->address }}</h1>
                 <hr>
