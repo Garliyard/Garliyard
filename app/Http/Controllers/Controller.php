@@ -7,6 +7,7 @@ use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Crypt;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class Controller extends BaseController
@@ -25,7 +26,7 @@ class Controller extends BaseController
 
     public function qr($address)
     {
-        return response(QrCode::format('png')->size(500)->generate($address), 200, [
+        return response(QrCode::format('png')->size(500)->generate(Crypt::decrypt($address)), 200, [
             "Content-Type" => "image/png"
         ]);
     }
