@@ -7,7 +7,7 @@
     </div>
     <div class="navbar-collapse collapse" id="navbar">
         <ul class="nav navbar-nav">
-            @if(\Illuminate\Support\Facades\Auth::check()  && (session()->has("yubikey-needed") == false))
+            @if(\Illuminate\Support\Facades\Auth::check()  && (\App\Http\Controllers\DashboardController::additionalAuthNeeded(false) == false))
                 <li class="dropdown">
                     <a aria-expanded="false" role="button" href="#" class="dropdown-toggle" data-toggle="dropdown"> Navigation <span class="caret"></span></a>
                     <ul role="menu" class="dropdown-menu">

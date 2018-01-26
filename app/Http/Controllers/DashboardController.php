@@ -23,6 +23,7 @@ class DashboardController extends Controller
     public static function additionalAuthNeeded($redirect = false)
     {
         if (session()->has("yubikey-needed")) return ($redirect) ? redirect("/login/yubikey") : true;
+        if (session()->has("totp-needed")) return ($redirect) ? redirect("/login/totp") : true;
         return false;
     }
 
