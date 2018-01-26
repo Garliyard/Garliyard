@@ -52,7 +52,7 @@
                                 </h1>
                                 <hr>
                                 <small>
-                                    {{ ($address->label) ? strtoupper($address->label) : "CLICK THE BUTTON TO THE RIGHT TO SET A LABEL FOR THIS ADDRESS" }}
+                                    {{ ($address->label) ? strtoupper($address->getLabel()) : "CLICK THE BUTTON TO THE RIGHT TO SET A LABEL FOR THIS ADDRESS" }}
                                     &nbsp; <a href="/edit-label/{{ $address->address }}"><span class="fa fa-pencil" title="Edit Address Label"></span></a>
                                 </small>
                                 </h1>

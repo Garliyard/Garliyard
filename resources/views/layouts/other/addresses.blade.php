@@ -15,7 +15,7 @@
                 <td>{{ $address->address }}</td>
                 <td>{{ number_format(\App\Address::getReceived($address->address), 8) }}</td>
                 <td>
-                    {{ $address->label or "No Label Present" }}
+                    {{ ($address->label) ? $address->getLabel() : "No Label Present" }}
                     &nbsp; <a href="/edit-label/{{ $address->address }}"><span class="fa fa-pencil"></span></a>
                 </td>
                 <td>{{ \Carbon\Carbon::parse($address->created_at)->toDayDateTimeString() }} ({{ \Carbon\Carbon::parse($address->created_at)->diffForHumans() }})</td>

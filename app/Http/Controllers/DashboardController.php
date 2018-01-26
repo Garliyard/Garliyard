@@ -9,6 +9,7 @@ use App\Yubikey;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Crypt;
 
 class DashboardController extends Controller
 {
@@ -194,7 +195,7 @@ class DashboardController extends Controller
 
                 // Update the value in the database
                 $address->update([
-                    "label" => substr($request->input("label"), 0, 80)
+                    "label" => Crypt::encrypt(substr($request->input("label"), 0, 80))
                 ]);
 
                 // Purge the cache for the user.
@@ -215,7 +216,6 @@ class DashboardController extends Controller
         return view("dashboard/account/2fa/index")
             ->with("yubikeys", Yubikey::getUserKeys());
     }
-
 
 
 }

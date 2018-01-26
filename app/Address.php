@@ -6,6 +6,7 @@ use App\Http\Controllers\GarlicoinController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Crypt;
 
 class Address extends Model
 {
@@ -53,6 +54,15 @@ class Address extends Model
         return Cache::tags('address-received')->remember($address, 3, function () use ($gcd, $address) {
             return $gcd->getAddressBalance($address);
         });
+    }
+
+    public function getLabel()
+    {
+        try {
+            return Crypt::decrypt($this->label);
+        } catch (\Exception $exception) {
+            return $this->label;
+        }
     }
 
 }
