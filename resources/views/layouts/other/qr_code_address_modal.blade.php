@@ -11,7 +11,7 @@
 
                 <h1>{{ $address->address }}</h1>
                 <hr>
-                You may also embed this URL on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
+                You may also embed this on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
                 <code>https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ $address->address }}</code>
             </div>
 
