@@ -50,7 +50,12 @@ class LoginController extends Controller
     {
         if ($error = $this->manualValidation($request)) return view("auth/login")->with("error", $error);
 
-        if (Auth::attempt(["username" => $request->input("username"), "password" => $request->input("password")])) {
+        $auth_array = [
+            "username" => $request->input("username"),
+            "password" => $request->input("password")
+        ];
+
+        if (Auth::attempt($auth_array)) {
             // Check to see if the user has a yubikey associated to their account
 
             if (Yubikey::userHasYubikeys()) {
