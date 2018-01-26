@@ -50,7 +50,7 @@ class Address extends Model
     public static function getReceived($address)
     {
         $gcd = new GarlicoinController();
-        return Cache::tags('address-received')->remember($address, 1, function () use ($gcd, $address) {
+        return Cache::tags('address-received')->remember($address, 3, function () use ($gcd, $address) {
             return $gcd->getAddressBalance($address);
         });
     }

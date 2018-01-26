@@ -179,7 +179,7 @@ class GarlicoinController extends JsonRpcController
      */
     public function hasEnough(float $amount): bool
     {
-        return ($this->getBalance() >= $amount);
+        return ($this->getBalance(true) >= $amount);
     }
 
 
@@ -191,17 +191,29 @@ class GarlicoinController extends JsonRpcController
      *
      * @return float
      */
-    public function getBalance()
+    public function getBalance($ignore_cache = false)
     {
         $this->newRequest();
         $this->setMethod("getbalance");
         $this->setParameters([Auth::user()->username, self::$minconf]); // [username, minconf]
         $this->newCurlInstance();
-        $data = $this->post();
-        if ($data["error"] == null) {
-            return $data["result"];
+
+        if ($ignore_cache) {
+            $data = $this->post();
+            if ($data["error"] == null) {
+                return $data["result"];
+            } else {
+                abort(500);
+            }
         } else {
-            abort(500);
+            return Cache::tags('balances')->remember(Auth::user()->username, 3, function () {
+                $data = $this->post();
+                if ($data["error"] == null) {
+                    return $data["result"];
+                } else {
+                    abort(500);
+                }
+            });
         }
     }
 

@@ -112,7 +112,7 @@ class DashboardController extends Controller
         if ($need = self::additionalAuthNeeded()) return $need;
 
         return view("dashboard/pay")
-            ->with("balance", $this->garlicoind->getBalance());
+            ->with("balance", $this->garlicoind->getBalance(true));
     }
 
     /**
@@ -131,7 +131,7 @@ class DashboardController extends Controller
             return redirect("transaction/" . $transaction->transaction_id);
         } else {
             return view("dashboard/pay")
-                ->with("balance", $this->garlicoind->getBalance())
+                ->with("balance", $this->garlicoind->getBalance(true))
                 ->with("to_address", $request->input("to_address"))
                 ->with("amount", $request->input("amount"));
         }
