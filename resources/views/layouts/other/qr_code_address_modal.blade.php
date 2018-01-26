@@ -14,7 +14,8 @@
                 <h1>{{ $address->address }}</h1>
                 <hr>
                 You may also embed this on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
-                <code>https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</code>
+                <br>
+                https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}
             </div>
 
             <div class="modal-footer">
