@@ -39,11 +39,11 @@
                                     LABEL EDITOR FOR {{ strtoupper($address->address) }}
                                 </div>
                                 <div class="panel-body">
-                                    @if($address->label != null)
+                                    @if($address->label != null && $address->label != "")
                                         <p>
                                             Your current label for the address {{ $address->address }} is:
                                             <br>
-                                            <b>{{ $address->label }}</b>
+                                            <b>{{ $address->getLabel() }}</b>
                                         </p>
                                         <hr>
                                     @endif
