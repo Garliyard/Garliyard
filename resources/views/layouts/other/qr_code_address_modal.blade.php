@@ -16,7 +16,7 @@
                 You may also embed this on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
                 <br>
                 <div class="col-md-10 col-md-offset-1">
-                    <p>https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</p>
+                    <p style="word-wrap: break-word;">https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</p>
                 </div>
             </div>
 
