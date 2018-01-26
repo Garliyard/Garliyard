@@ -129,14 +129,28 @@ class DashboardController extends Controller
     {
         if ($need = self::additionalAuthNeeded()) return $need;
 
-        if ($transaction = $this->garlicoind->pay($request->input("to_address"), $request->input("amount"))) {
-            return redirect("transaction/" . $transaction->transaction_id);
-        } else {
+        if ($error = $this->payValidator($request)) {
+            session()->flash("error", $error);
             return view("dashboard/pay")
-                ->with("balance", $this->garlicoind->getBalance(true))
-                ->with("to_address", $request->input("to_address"))
-                ->with("amount", $request->input("amount"));
+                ->with("balance", $this->garlicoind->getBalance(true));
+        } else {
+            if ($transaction = $this->garlicoind->pay($request->input("to_address"), $request->input("amount"))) {
+                return redirect("transaction/" . $transaction->transaction_id);
+            } else {
+                return view("dashboard/pay")
+                    ->with("balance", $this->garlicoind->getBalance(true))
+                    ->with("to_address", $request->input("to_address"))
+                    ->with("amount", $request->input("amount"));
+            }
         }
+    }
+
+    private function payValidator(Request $request)
+    {
+        if (!$request->has("to_address")) return "Please add a payment address.";
+        if (!$request->has("amount")) return "Please add a value.";
+        if (floatval($request->input("amount")) <= 0.001) return "Amount is too small.";
+        return false;
     }
 
     /**
