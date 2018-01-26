@@ -20,7 +20,7 @@ class DashboardController extends Controller
         $this->garlicoind = new GarlicoinController();
     }
 
-    public static function additionalAuthNeeded($redirect = false)
+    public static function additionalAuthNeeded($redirect = true)
     {
         if (session()->has("yubikey-needed")) return ($redirect) ? redirect("/login/yubikey") : true;
         if (session()->has("totp-needed")) return ($redirect) ? redirect("/login/totp") : true;
