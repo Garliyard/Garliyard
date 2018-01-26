@@ -51,7 +51,7 @@
                                     </div>
                                     <hr>
                                     <div class="text-center">
-                                        {{ \BaconQrCode\Encoder\QrCode::generate($qr_code)->size(200) }}
+                                        {{ \BaconQrCode\Encoder\QrCode::size(200)->generate($qr_code) }}
 
                                         <br>
                                         <p>
