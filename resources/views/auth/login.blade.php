@@ -12,12 +12,13 @@
 <body class="gray-bg">
 <div class="loginColumns animated fadeInDown">
     <div class="row">
+
+
         <div class="col-md-6">
             <h2 class="font-bold">Welcome to {{ config('app.name', 'Garlicoin') }}</h2>
             <p>
                 If you need support, please contact <strong>{{ env('DISCORD_SUPPORT', 'Undefined#0000') }}</strong> on Discord.
             </p>
-
 
         </div>
         <div class="col-md-6">
@@ -34,7 +35,14 @@
                     <div class="form-group">
                         <input type="password" class="form-control" name="password" placeholder="Password" required="">
                     </div>
-                    <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
+
+                    @if(session()->has("error"))
+                        <div class="alert alert-danger text-center">
+                            {{ session()->get("error") }}
+                        </div>
+                    @endif
+
+                    <button type="submit" class="btn btn-warning block full-width m-b">Login</button>
 
                     <p class="text-muted text-center">
                         <small>Do not have an account?</small>

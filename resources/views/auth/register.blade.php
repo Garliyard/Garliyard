@@ -16,6 +16,12 @@
 
 <div class="middle-box text-center loginscreen   animated fadeInDown">
     <div>
+        @if(session()->has("error"))
+            <div class="alert alert-danger">
+                {{ session()->get("error") }}
+            </div>
+        @endif
+
         <div>
             <img src="https://garlicoin.io/static/logo.040b5384.png" width="100">
         </div>
@@ -34,7 +40,12 @@
             <div class="form-group">
                 <input type="password" class="form-control" name="password" placeholder="Password" required="">
             </div>
-            <button type="submit" class="btn btn-primary block full-width m-b">Register</button>
+            <div class="form-group">
+                <input type="checkbox" name="agree">
+                I agree to <a href="https://github.com/Garliyard/Garliyard/wiki/Terms-of-Service">The Terms of Service</a>.
+
+            </div>
+            <button type="submit" class="btn btn-warning block full-width m-b">Register</button>
 
             <p class="text-muted text-center">
                 <small>Already have an account?</small>

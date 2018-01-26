@@ -42,7 +42,10 @@ class RegisterController extends Controller
 
     public function register(Request $request)
     {
-        if ($error = $this->manualValidation($request)) return view("auth/register")->with("error", $error);
+        if ($error = $this->manualValidation($request)) {
+            session()->flash("error", $error);
+            return view("auth/register");
+        };
         $user = User::create([
             "username" => $request->input("username"),
             "password" => bcrypt($request->input("password"))

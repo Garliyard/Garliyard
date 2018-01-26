@@ -65,9 +65,9 @@ class LoginController extends Controller
                 return redirect("/home");
             }
         } else {
+            session()->flash("error", "Invalid username or password");
             return view("auth/login")
-                ->with("username", ($request->has("username") ? $request->input("username") : ""))
-                ->with("error", "Invalid username or password");
+                ->with("username", ($request->has("username") ? $request->input("username") : ""));
         }
 
     }
