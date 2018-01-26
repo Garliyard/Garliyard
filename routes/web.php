@@ -40,4 +40,4 @@ Route::post('/account/2fa/yubikey/add', 'Auth\TwoFactorController@addYubikey');
 Route::get('/account/2fa/yubikey/delete/{yubikey}', 'Auth\TwoFactorController@deauthorizeYubikey');
 
 //QR Generator
-Route::get('/qr/{address}', 'Controller@qr');
+Route::get('/qr-code/{address}', 'Controller@qr');
