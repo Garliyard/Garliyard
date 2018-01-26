@@ -9,7 +9,7 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#tab-introduction">Introduction</a></li>
                     <li class=""><a data-toggle="tab" href="#tab-totp">Google Authenticator</a></li>
-                    <li class=""><a data-toggle="tab" href="#tab-yubikey">This is second tab</a></li>
+                    <li class=""><a data-toggle="tab" href="#tab-yubikey">Yubikey</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="tab-introduction" class="tab-pane active">
