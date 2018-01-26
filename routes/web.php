@@ -19,7 +19,7 @@ Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/login/yubikey', 'Auth\TwoFactorController@yubikeyAuthView');
 Route::post('/login/yubikey', 'Auth\TwoFactorController@yubikeyAuthPost');
-Route::get('/login/totp', 'Auth\TwoFactorController@yubikeyAuthView');
+Route::get('/login/totp', 'Auth\TwoFactorController@totpAuthView');
 Route::post('/login/totp', 'Auth\TwoFactorController@totpAuthPost');
 
 Route::get('/', 'Controller@index');
