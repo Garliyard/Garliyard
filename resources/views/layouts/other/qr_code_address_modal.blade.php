@@ -15,9 +15,11 @@
                 <hr>
                 You may also embed this on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
                 <br>
+                <br>
                 <div class="col-md-10 col-md-offset-1">
-                    <p style="word-wrap: break-word;">https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</p>
+                    <code style="word-wrap: break-word;">https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</code>
                 </div>
+                <br><br>
             </div>
 
             <div class="modal-footer">
