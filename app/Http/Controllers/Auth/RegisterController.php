@@ -56,9 +56,10 @@ class RegisterController extends Controller
 
     private function manualValidation(Request $request)
     {
-        if (!$request->has("username")) return "Please provide a valid username";
-        if (!$request->has("password")) return "Please provide a valid password";
-        if (User::where('username', $request->input("username"))->first()) return "Username already exists";
+        if (!$request->has("username")) return "Please provide a valid username.";
+        if (!$request->has("password")) return "Please provide a valid password.";
+        if (!$request->has("agree")) return "You did not agree to the Terms of Service.";
+        if (User::where('username', $request->input("username"))->first()) return "Username already exists.";
         return false;
     }
 
