@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\TOTP;
 use App\User;
 use App\Yubikey;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -56,7 +57,7 @@ class LoginController extends Controller
         ];
 
         if (Auth::attempt($auth_array)) {
-            // Check to see if the user has a yubikey associated to their account
+            // Check to see if the user has a yubikey or TOTP secret associated to their account
 
             if (Yubikey::userHasYubikeys()) {
                 // They do - lock them in a session
@@ -64,6 +65,15 @@ class LoginController extends Controller
 
                 // Return the redirect to the view.
                 return redirect("/login/yubikey");
+
+            } elseif (TOTP::doesUserHaveSecret()) {
+
+                // They do - lock them in a session
+                session()->push("totp-needed", "true");
+
+                // Return the redirect to the view.
+                return redirect("/login/totp");
+
             } else {
                 // They don't, let them continue.
                 User::welcome();
