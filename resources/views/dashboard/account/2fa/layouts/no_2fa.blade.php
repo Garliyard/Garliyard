@@ -15,9 +15,9 @@
                     <div id="tab-introduction" class="tab-pane active">
                         <div class="panel-body">
                             <strong>Two Factor Authentication is secure</strong>
-                            <br>
+                            <br><br>
                             <p>
-                                Albeit Garlicoin is a cryptocurrency, financial data is always a good thing to protect.
+                                Albeit Garlicoin is a cryptocurrency, financial data is important to protect.
                                 <br>
                                 This page will allow you to configure multiple hardware tokens or Google Authenticatior
                                 as a second factor to keep someone out of your account if your password is guessed.
