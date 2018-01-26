@@ -24,12 +24,6 @@
             <div class="container">
                 <div class="row text-center">
                     <div class="col-lg-10 col-lg-offset-1">
-                        <div class="alert alert-success">
-                            Garliyard is now running stable in production without issues.
-                            <br>
-                            Under the circumstance that issues occur, please contact <b>Elycin#4913</b>
-                        </div>
-                        <br>
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 <div>
@@ -50,6 +44,8 @@
                                     </h2>
                                     No service fees
                                     <br>
+                                    Two-Factor Authentication via Yubikey/Google Authenticator
+                                    <br>
                                     100 unique addresses
                                     <br>
                                     Balance confirmed after 3 confirmations
@@ -61,8 +57,6 @@
                                     Blockchain explorer (coming soon)
                                     <br>
                                     Developer API (coming soon)
-                                    <br>
-                                    Two-Factor Authentication via Yubikey/Google Authenticator (coming soon)
                                     <br>
                                 </div>
                             </div>
