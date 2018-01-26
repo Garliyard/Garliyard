@@ -7,15 +7,15 @@
                 <small class="font-bold">You can crop this window or scan it with a mobile device to send currency to this address.</small>
             </div>
             <div class="modal-body text-center">
-                <a href="https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ $address->address }}" target="_blank">
-                    <img src="https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}" height="200"/>
+                <a href="https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ $address->address }}" target="_blank">
+                    <img src="https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}" height="200"/>
                 </a>
 
                 <h1>{{ $address->address }}</h1>
                 <hr>
                 You may also embed this on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
                 <br>
-                https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}
+                <textarea>https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</textarea>
             </div>
 
             <div class="modal-footer">
