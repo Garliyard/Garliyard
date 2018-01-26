@@ -18,7 +18,7 @@
                             <br><br>
                             <p>
                                 Albeit Garlicoin is a cryptocurrency, financial data is important to protect.
-                                <br>
+                                <br><br>
                                 This page will allow you to configure multiple hardware tokens or Google Authenticatior
                                 as a second factor to keep someone out of your account if your password is guessed.
                                 <br><br>
