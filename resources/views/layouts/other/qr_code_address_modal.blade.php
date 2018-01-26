@@ -10,6 +10,9 @@
                 <img src="data:image/png;base64,{{ base64_encode(\SimpleSoftwareIO\QrCode\Facades\QrCode::format('png')->size(200)->generate($address->address)) }}" />
 
                 <h1>{{ $address->address }}</h1>
+                <hr>
+                You may also embed this URL on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
+                <code>https://{{ $_SERVER["HTTP_HOST"] }}/qr-code/{{ $address->address }}</code>
             </div>
 
             <div class="modal-footer">

@@ -47,21 +47,36 @@
                             <div class="panel-body">
                                 <h1>
                                     {{ $address->address }}
-                                    <span class="pull-right">
-                                        <a href="#" style="color: #000;" data-toggle="modal" data-target="#qr-code">
-                                            <span class="fa fa-qrcode"></span>
-                                        </a>
-                                        <a href="#" style="color: #000;" data-toggle="modal" data-target="#html-code">
-                                            <span class="fa fa-code"></span>
-                                        </a>
-                                    </span>
+
+
                                 </h1>
                                 <hr>
                                 <small>
-                                    {{ strtoupper("This address was created " . \Carbon\Carbon::parse($address->created_at)->diffForHumans()) }}
-                                    <br>
-                                    <a href="/new-address">CREATE NEW ADDRESS</a> | <a href="/addresses">VIEW ALL ADDRESSES</a>
+                                    {{ ($address->label) ? strtoupper($address->label) : "CLICK THE BUTTON TO THE RIGHT TO SET A LABEL FOR THIS ADDRESS" }}
+                                    &nbsp; <a href="/edit-label/{{ $address->address }}"><span class="fa fa-pencil" title="Edit Address Label"></span></a>
                                 </small>
+                                </h1>
+                            </div>
+                            <div class="panel-footer">
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <small>
+                                            {{ strtoupper("This address was created " . \Carbon\Carbon::parse($address->created_at)->diffForHumans()) }}
+                                            <br>
+                                            <a href="/new-address">CREATE NEW ADDRESS</a> | <a href="/addresses">VIEW ALL ADDRESSES</a>
+                                        </small>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="row">
+                                        <div class="pull-right">
+                                            <a href="#" style="color: #000;" data-toggle="modal" data-target="#qr-code">
+                                                <span class="fa fa-qrcode fa-3x"></span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <br><br>
                             </div>
                         </div>
                     </div>
@@ -89,7 +104,6 @@
 </div>
 
 @include("layouts.other.qr_code_address_modal")
-@include("layouts.other.html_code_address_modal")
 
 <!-- Mainly scripts -->
 <script src="/js/app.js"></script>
