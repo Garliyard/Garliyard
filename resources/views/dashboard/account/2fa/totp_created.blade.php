@@ -60,7 +60,7 @@
                                             Please scan it and make sure that your google authenticator is working.
                                         </p>
                                         <br><br>
-                                        <a class="btn btn-warning" href="/accounts/2fa">RETURN</a>
+                                        <a class="btn btn-warning" href="/account/2fa">RETURN</a>
                                     </div>
                                 </div>
                             </div>
