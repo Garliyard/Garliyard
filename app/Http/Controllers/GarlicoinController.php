@@ -199,7 +199,12 @@ class GarlicoinController extends JsonRpcController
         $this->newCurlInstance();
 
         if ($ignore_cache) {
+            //Purge the old cache value.
+            Cache::tags('balances')->forget(Auth::user()->username);
+
+            // get the new data.
             $data = $this->post();
+
             if ($data["error"] == null) {
                 return $data["result"];
             } else {
