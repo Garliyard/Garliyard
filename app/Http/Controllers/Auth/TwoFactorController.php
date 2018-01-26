@@ -246,7 +246,7 @@ class TwoFactorController extends DashboardController
                 ->with('qr_code', $qr_code);
 
         } else {
-            session()->flash("error", "You cannot create another TOTP Token as one already exists for your account");
+            session()->flash("error", "Google Authenticator is already enabled for your account.");
             return redirect("/account/2fa");
         }
     }

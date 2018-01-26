@@ -22,7 +22,7 @@
             <div class="container-fluid">
                 @if(session()->has("error"))
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
+                        <div class="col-md-6 col-md-offset-3">
                             <div class="alert alert-danger">
                                 {{ session()->get("error") }}
                             </div>
@@ -32,7 +32,7 @@
 
                 @if(session()->has("success"))
                     <div class="row">
-                        <div class="col-md-4 col-md-offset-4">
+                        <div class="col-md-6 col-md-offset-3">
                             <div class="alert alert-success">
                                 {{ session()->get("success") }}
                             </div>
@@ -42,9 +42,9 @@
 
                 <div class="row">
                     @if(\App\Yubikey::userHasYubikeys())
-
-                    @include("dashboard.account.2fa.layouts.yubikeys")
-
+                        @include("dashboard.account.2fa.layouts.yubikeys")
+                    @elseif(\App\TOTP::doesUserHaveSecret())
+                        @include("dashboard.account.2fa.layouts.totp_exists")
                     @else
                         @include("dashboard.account.2fa.layouts.no_2fa")
                     @endif
