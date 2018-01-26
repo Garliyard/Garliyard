@@ -50,7 +50,7 @@
                                     </div>
                                     <hr>
                                     <div>
-                                        <p>
+                                        <p style="word-wrap: break-word;">
                                             <strong>Transaction ID</strong>:
                                             <br>
                                             {{ $transaction->transaction_id }}
