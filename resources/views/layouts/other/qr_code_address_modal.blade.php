@@ -15,7 +15,9 @@
                 <hr>
                 You may also embed this on your website inside an <code>&#60;img&#62;</code> tag by using the following URL
                 <br>
-                <textarea>https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</textarea>
+                <div class="col-md-10 col-md-offset-1">
+                    <textarea style="min-width: 100%; max-width: 100%;">https://{{ $_SERVER["HTTP_HOST"] }}/qr/{{ \Illuminate\Support\Facades\Crypt::encrypt($address->address) }}</textarea>
+                </div>
             </div>
 
             <div class="modal-footer">
