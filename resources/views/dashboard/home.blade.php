@@ -28,7 +28,7 @@
                                 BALANCE
                             </div>
                             <div class="panel-body">
-                                <h1>{{ number_format($balance, 8) }} GRLC</h1>
+                                <h1><span id="balance">{{ number_format($balance, 8) }}</span> GRLC</h1>
                                 <p>
                                     BALANCE AFTER {{ \App\Http\Controllers\GarlicoinController::$minconf }} CONFIRMATIONS
                                 </p>
@@ -107,5 +107,12 @@
 
 <!-- Mainly scripts -->
 <script src="/js/app.js"></script>
+<script>
+    var balanceInterval = setInterval(function () {
+        $.getJSON("/dashboard-api/balance", function (data) {
+            $("#balance").html(data["value"].toString());
+        })
+    }, 30 * 1000);
+</script>
 </body>
 </html>

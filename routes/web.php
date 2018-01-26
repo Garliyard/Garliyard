@@ -35,6 +35,9 @@ Route::get('/transaction/{txid}', 'DashboardController@transactionView');
 Route::get('/edit-label/{address}', 'DashboardController@labelEditorView');
 Route::post('/edit-label/post', 'DashboardController@labelEditorPost');
 
+// Dashboard API
+Route::get('/dashboard-api/balance', 'DashboardAPIController@getBalance');
+
 // Account
 Route::get('/account/2fa', 'DashboardController@accountTwoFactorIndex');
 Route::get('/account/2fa/yubikey/add', 'Auth\TwoFactorController@addYubikeyView');
