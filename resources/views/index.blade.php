@@ -125,7 +125,7 @@
             </div>
             <div class="footer">
                 <div class="pull-right">
-                    <a href="https://github.com/garliyard/garliyard">View source code on GitHub</a>
+                    <a href="https://github.com/garliyard">View source code on GitHub</a>
                 </div>
                 <div>
                     <strong>Garliyard is a open source project by </strong> <a href="https://elyc.in/">Ely Haughie</a>
