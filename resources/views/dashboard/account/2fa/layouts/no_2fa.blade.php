@@ -15,7 +15,7 @@
                     <div id="tab-introduction" class="tab-pane active">
                         <div class="panel-body">
                             <strong>Two Factor Authentication is secure</strong>
-
+                            <br>
                             <p>
                                 Albeit Garlicoin is a cryptocurrency, financial data is always a good thing to protect.
                                 <br>
