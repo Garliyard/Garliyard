@@ -23,7 +23,7 @@ class TOTP extends Model
 
     public static function getUserSecret()
     {
-        return Crypt::decrypt(self::where('user_id', Auth::user()->id)->secret);
+        return Crypt::decrypt(self::where('user_id', Auth::user()->id)->first()->secret);
     }
 
     public static function doesUserHaveSecret()
