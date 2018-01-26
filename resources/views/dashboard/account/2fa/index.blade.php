@@ -22,7 +22,7 @@
             <div class="container-fluid">
                 @if(session()->has("error"))
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-4 col-md-offset-4">>
                             <div class="alert alert-danger">
                                 {{ session()->get("error") }}
                             </div>
@@ -32,7 +32,7 @@
 
                 @if(session()->has("success"))
                     <div class="row">
-                        <div class="col-md-6 col-md-offset-3">
+                        <div class="col-md-4 col-md-offset-4">>
                             <div class="alert alert-success">
                                 {{ session()->get("success") }}
                             </div>
