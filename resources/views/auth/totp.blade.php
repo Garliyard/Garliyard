@@ -54,7 +54,8 @@
                                     </div>
                                     <div class="panel-footer">
                                         <div class="pull-right">
-                                            <a class="btn btn-danger" href="/logout">LOGOUT</a>
+                                            <a class="btn btn-danger" href="/logout">CANCEL</a>
+                                            <button class="btn btn-success" type="submit">LOGIN</button>
                                         </div>
                                         <br><br>
                                     </div>
