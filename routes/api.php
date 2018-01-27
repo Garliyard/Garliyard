@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/exchange-rate/usd', 'APIController@getExchangeRateUSD');
+Route::get('/exchange-rate/usd/json', 'APIController@getExchangeRateUSDJSON');
