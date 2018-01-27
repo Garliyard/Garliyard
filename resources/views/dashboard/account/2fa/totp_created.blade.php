@@ -52,6 +52,8 @@
                                     <hr>
                                     <div class="text-center">
                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate($qr_code) !!}
+                                        <br>
+                                        <h3>{{ $secret }}</h3>
 
                                         <br>
                                         <p>

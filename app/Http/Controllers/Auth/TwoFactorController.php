@@ -242,7 +242,7 @@ class TwoFactorController extends DashboardController
             );
 
             return view("dashboard/account/2fa/totp_created")
-                ->with('totp', $totp_model)
+                ->with('secret', $new_secret)
                 ->with('qr_code', $qr_code);
 
         } else {
