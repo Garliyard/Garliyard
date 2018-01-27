@@ -52,6 +52,8 @@
                                     <div class="text-center">
                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate($qr_code) !!}
                                         <h3>{{ $secret }}</h3>
+                                        <br>
+                                        <small>(time based)</small>
                                         <p>
                                             Leaving this page will result in the ability to never see this code again.
                                             <br>
