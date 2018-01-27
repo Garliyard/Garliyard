@@ -47,7 +47,6 @@
                                             Google Authenticator Setup
                                         </h2>
                                         <h4>Please scan the QR Code below</h4>
-
                                     </div>
                                     <hr>
                                     <div class="text-center">
