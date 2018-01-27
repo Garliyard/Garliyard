@@ -52,16 +52,13 @@
                                     <hr>
                                     <div class="text-center">
                                         {!! \SimpleSoftwareIO\QrCode\Facades\QrCode::size(200)->generate($qr_code) !!}
-                                        <br>
                                         <h3>{{ $secret }}</h3>
-
-                                        <br>
                                         <p>
                                             Leaving this page will result in the ability to never see this code again.
                                             <br>
                                             Please scan it and make sure that your google authenticator is working.
                                         </p>
-                                        <br><br>
+                                        <br>
                                         <a class="btn btn-warning" href="/account/2fa">RETURN</a>
                                     </div>
                                 </div>
