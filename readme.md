@@ -28,7 +28,7 @@ In the event that the website becomes unresponsive or starts tossing errors, ple
  - Address Labeling
  - QR Code Generator
  
- ## Planned FEatures
+ ## Planned Features
  - Integrated blockchain explorer
  - REST API
  
