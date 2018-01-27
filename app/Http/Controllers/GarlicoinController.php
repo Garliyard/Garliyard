@@ -327,7 +327,7 @@ class GarlicoinController extends JsonRpcController
 
     public function exchangeRate()
     {
-        return Cache::tags('exchange')->remember('usd', 3, function () {
+        return Cache::tags('exchange')->remember('usd', 1, function () {
             return json_decode(file_get_contents("https://api.coinmarketcap.com/v1/ticker/garlicoin/"), true)[0]["price_usd"];
         });
     }
