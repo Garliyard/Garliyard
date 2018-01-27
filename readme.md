@@ -24,4 +24,8 @@ You can find the current instance of Garliyard running at: https://garliyard.ely
      - These statistics are entirely anonymous, and taken as a collective sum
  - Transaction History
  - Address Labeling
+ - QR Code Generator
  
+ ## Planned FEatures
+ - Integrated blockchain explorer
+ - REST API
