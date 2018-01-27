@@ -34,7 +34,7 @@
                     <div class="col-md-4 col-md-offset-4">
                         <form action="/pay" method="post">
                             {{ csrf_field() }}
-                            <div class="panel panel-info">
+                            <div class="panel panel-primary">
                                 <div class="panel-heading">
                                     TRANSACTION SENT
                                 </div>

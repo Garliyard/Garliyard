@@ -59,7 +59,7 @@
                                             Please scan it and make sure that your google authenticator is working.
                                         </p>
                                         <br>
-                                        <a class="btn btn-warning" href="/account/2fa">RETURN</a>
+                                        <a class="btn btn-primary" href="/account/2fa">RETURN</a>
                                     </div>
                                 </div>
                             </div>
