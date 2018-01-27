@@ -31,3 +31,7 @@ In the event that the website becomes unresponsive or starts tossing errors, ple
  ## Planned FEatures
  - Integrated blockchain explorer
  - REST API
+ 
+ ## Donation
+ Garliyard is run entirely on our own resources.  
+ If you would like to donate, you may send soem garlic to `GP87sFP4jA472aLX5GBRn6DRwmbWknSStZ`
