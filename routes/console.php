@@ -16,3 +16,8 @@ use Illuminate\Foundation\Inspiring;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('exchange:usd', function (){
+    $gcd = new \App\Http\Controllers\GarlicoinController();
+    echo sprintf("1 GRLC = %s USD\n", $gcd->exchangeRate());
+});

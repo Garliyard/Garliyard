@@ -30,7 +30,7 @@
                             <div class="panel-body">
                                 <h1><span id="balance">{{ number_format($balance, 8) }}</span> GRLC</h1>
                                 <p>
-                                    BALANCE AFTER {{ \App\Http\Controllers\GarlicoinController::$minconf }} CONFIRMATIONS
+                                    YOUR GARLIC IS WORTH $<span id="balance-exchanged">{{ number_format($exchanged_usd, 2) }}</span> USD
                                 </p>
                             </div>
                             <div class="panel-footer">
@@ -47,8 +47,6 @@
                             <div class="panel-body">
                                 <h1>
                                     {{ $address->address }}
-
-
                                 </h1>
                                 <hr>
                                 <small>
@@ -111,6 +109,7 @@
     var balanceInterval = setInterval(function () {
         $.getJSON("/dashboard-api/balance", function (data) {
             $("#balance").html(data["value"].toString());
+            $("#balance-exchanged").html(data["exchanged"].toString());
         })
     }, 30 * 1000);
 </script>

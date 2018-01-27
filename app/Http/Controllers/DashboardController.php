@@ -42,6 +42,7 @@ class DashboardController extends Controller
             ->with('user', Auth::user())
             ->with('address', $this->garlicoind->getLastAddress())
             ->with('balance', $this->garlicoind->getBalance())
+            ->with('exchanged_usd', $this->garlicoind->getBalance() * $this->garlicoind->exchangeRate())
             ->with('transactions', Transaction::getRecentTransactionsFromUserID(Auth::user()->id));
     }
 
