@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Address;
-use App\Http\Controllers\Auth\YubikeyController;
 use App\Transaction;
 use App\Yubikey;
 use Illuminate\Http\Request;
@@ -129,19 +128,19 @@ class DashboardController extends Controller
     {
         if ($need = self::additionalAuthNeeded()) return $need;
 
-        if ($error = $this->payValidator($request)) {
-            session()->flash("error", $error);
-            return view("dashboard/pay")
-                ->with("balance", $this->garlicoind->getBalance(true));
-        } else {
+        if (!$error = $this->payValidator($request)) {
             if ($transaction = $this->garlicoind->pay($request->input("to_address"), $request->input("amount"))) {
-                return redirect("transaction/" . $transaction->transaction_id);
+                return redirect("transaction/" . $transaction->getTransactionID());
             } else {
                 return view("dashboard/pay")
                     ->with("balance", $this->garlicoind->getBalance(true))
                     ->with("to_address", $request->input("to_address"))
                     ->with("amount", $request->input("amount"));
             }
+        } else {
+            session()->flash("error", $error);
+            return view("dashboard/pay")
+                ->with("balance", $this->garlicoind->getBalance(true));
         }
     }
 

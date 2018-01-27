@@ -55,4 +55,9 @@ class Transaction extends Model
             return self::where('user_id', $user_id)->orderBy('id', 'desc')->take(25)->get();
         });
     }
+
+    public function getTransactionID()
+    {
+        return $this->transaction_id;
+    }
 }
