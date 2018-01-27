@@ -8,3 +8,20 @@ This project has been open sourced for the sole purpose of transparency, honesty
 ## Official Website
 As of current, I do not have a dedicated domain for garliyard, and is piggy-backing on my personal website.  
 You can find the current instance of Garliyard running at: https://garliyard.elyc.in/
+
+## Current Features
+- Wallet balance confirmed after 3 transaction confirmations
+- Two Factor Authentication
+    - Yubikey (OTP)
+    - Google Authenticator (TOTP)
+- Redis Caching
+    - The Redis cache is implemented to store temporary values for a fixed amount of time
+    - This allows more JSONRPC calls to be made to Garlicoin.
+- 100 Unique Addresses
+    - Mature accounts can have a maximum of 100 unique Garlicoin Addresses.
+    - Accounts that are less than an hour old are limited to 10 to prevent spam
+ - Statistics
+     - These statistics are entirely anonymous, and taken as a collective sum
+ - Transaction History
+ - Address Labeling
+ 
