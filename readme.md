@@ -33,5 +33,5 @@ In the event that the website becomes unresponsive or starts tossing errors, ple
  - REST API
  
  ## Donation
- Garliyard is run entirely on our own resources.  
- If you would like to donate, you may send soem garlic to `GP87sFP4jA472aLX5GBRn6DRwmbWknSStZ`
+ Garliyard is run entirely on our own personal financial resources.  
+ If you would like to donate, you may send garlic to `GP87sFP4jA472aLX5GBRn6DRwmbWknSStZ`
