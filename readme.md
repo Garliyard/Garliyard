@@ -9,6 +9,8 @@ This project has been open sourced for the sole purpose of transparency, honesty
 As of current, I do not have a dedicated domain for garliyard, and is piggy-backing on my personal website.  
 You can find the current instance of Garliyard running at: https://garliyard.elyc.in/
 
+In the event that the website becomes unresponsive or starts tossing errors, please check to see if the system is overloaded by looking at our [netdata instance](https://sandbox.corsair.house/).
+
 ## Current Features
 - Wallet balance confirmed after 3 transaction confirmations
 - Two Factor Authentication
