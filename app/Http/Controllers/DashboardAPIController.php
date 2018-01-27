@@ -23,7 +23,7 @@ private $garlicoin;
     {
         return response(json_encode([
             "value" => $this->garlicoin->getBalance(),
-            "exchanged" => $this->garlicoin->exchangeRate()
+            "exchanged" => $this->garlicoin->getBalance() * $this->garlicoin->exchangeRate()
         ]));
     }
 }
