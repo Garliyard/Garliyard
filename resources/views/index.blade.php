@@ -27,6 +27,11 @@
                         <div class="ibox float-e-margins">
                             <div class="ibox-content">
                                 <div>
+                                    <div class="alert alert-danger text-center">
+                                        Garliyard is shutting down as it cannot keep up - please log in for more information.
+                                        <br>
+                                        Account creation has been disabled.
+                                    </div>
                                     <img src="https://garlicoin.io/static/logo.040b5384.png" width="100">
                                     <h1>Welcome to {{ config("app.name", "Garliyard") }}</h1>
                                     <p>

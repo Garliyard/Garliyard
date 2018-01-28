@@ -15,7 +15,7 @@
 Route::get('/login', 'Auth\LoginController@loginView')->name("login");
 Route::post('/login', 'Auth\LoginController@login');
 Route::get('/register', 'Auth\RegisterController@registrationView');
-Route::post('/register', 'Auth\RegisterController@register');
+//Route::post('/register', 'Auth\RegisterController@register');
 Route::get('/logout', 'Auth\LoginController@logout');
 Route::get('/login/yubikey', 'Auth\TwoFactorController@yubikeyAuthView');
 Route::post('/login/yubikey', 'Auth\TwoFactorController@yubikeyAuthPost');

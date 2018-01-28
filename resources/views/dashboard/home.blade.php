@@ -87,9 +87,9 @@
                                 GARLIYARD IS SHUTTING DOWN
                             </div>
                             <div class="panel-body">
-                                I'm sorry to do this, but the system has become unstable and isn't scaling well.
-                                <br>
                                 <b>Garliyard will be shutting down Feburary 28, 2018</b>
+                                <br>
+                                I'm sorry to do this, but the system has become unstable and isn't scaling well.
                                 <br><br>
                                 Your balances are still here even if you are unable to access garliyard,
                                 the system is seriously struggling to keep up and is facing the same fate as breadbox.
