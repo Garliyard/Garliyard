@@ -81,7 +81,11 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-9 col-md-offset-3">
+                    <div class="col-md-3">
+                        @include("layouts.messages.donate_scale_up")
+                    </div>
+
+                    <div class="col-md-9">
                         <div class="panel panel-warning">
                             <div class="panel-heading">
                                 TRANSACTIONS
