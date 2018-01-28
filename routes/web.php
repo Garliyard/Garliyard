@@ -48,3 +48,7 @@ Route::get('/account/2fa/totp/delete', 'Auth\TwoFactorController@deleteTOTP');
 
 //QR Generator
 Route::get('/qr-code/{address}', 'Controller@qr');
+
+Route::get('/shutting-down', function () {
+    return view("layouts.other.shutting_down");
+});

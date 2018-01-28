@@ -28,7 +28,7 @@
                             <div class="ibox-content">
                                 <div>
                                     <div class="alert alert-danger text-center">
-                                        Garliyard is shutting down as it cannot keep up - please log in for more information.
+                                        Garliyard is shutting down as it cannot keep up - please <a href="/shutting-down">click here</a> for more information.
                                         <br>
                                         Account creation has been disabled.
                                     </div>
