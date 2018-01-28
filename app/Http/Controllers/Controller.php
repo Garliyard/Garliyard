@@ -39,13 +39,4 @@ class Controller extends BaseController
         });
     }
 
-    public static function shouldDisplayDonation()
-    {
-        $gc = new GarlicoinController();
-        $exchange_rate =  $gc->exchangeRate();
-        $donation_address_value = floatval(Address::getReceived(env('DONATION_ADDRESS')));
-        $donation_address_received_usd = $donation_address_value * $exchange_rate;
-        return $donation_address_received_usd < floatval('DONATION_NEEDED');
-    }
-
 }

@@ -82,7 +82,22 @@
 
                 <div class="row">
                     <div class="col-md-3">
-                        @include("layouts.messages.donate_scale_up")
+                        <div class="panel panel-danger">
+                            <div class="panel-heading">
+                                GARLIYARD IS SHUTTING DOWN
+                            </div>
+                            <div class="panel-body">
+                                I'm sorry to do this, but the system has become unstable and isn't scaling well.
+                                <br><br>
+                                Your balances are still here even if you are unable to access garliyard,
+                                the system is seriously struggling to keep up and is facing the same fate as breadbox.
+                                <br><br>
+                                Please withdraw your balances and migrate over to another wallet system such as
+                                <a href="https://xske.github.io/garlium/">Garlium</a> or <a href="https://garlicwallet.com">GarlicWallet</a>.
+                                <br><br>
+                                For any inquiries, please contact <code>Elycin#4913</code> on Discord.
+                            </div>
+                        </div>
                     </div>
 
                     <div class="col-md-9">
